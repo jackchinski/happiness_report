@@ -67,7 +67,9 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 #| echo: false
 #| message: false
 table_satfinincome <- mastercleaned %>% 
-  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Finances"), percent = "column")
+  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Finances"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Income Ranges")
+
+table_satfinincome %>%
 
 ```
 
