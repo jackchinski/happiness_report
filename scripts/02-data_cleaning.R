@@ -1,25 +1,43 @@
 #### Preamble ####
-# Purpose: Cleans.... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Data: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from GSS
+# Author: Marcin Jaczynski 
+# Data: 15 March 2023
+# Contact: marcin.jaczynski@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: none
+# Any other information needed? No 
 
 
 #### Workspace setup ####
+library(opendatatoronto)
 library(tidyverse)
+library(dplyr)
+library(ggplot2)
 # [...UPDATE THIS...]
 
-#### Clean data ####
-# [...UPDATE THIS...]
-raw_data <- read_csv("inputs/data/raw_data.csv")
+#### Import the data ####
+GSS <- read_csv("GSS_csv_final.csv")
+
+
+#### Clean the data ####
+selected_data <- GSS %>% select(satfin, income16)
+
+
+clean1 <- subset(selected_data, income16 != ".d:  Do not Know/Cannot Choose")
+rm(selected_data)
+
+clean2 <- subset(clean1, income16 != ".r:  Refused")
+rm(clean1)
+
+clean3 <- subset(clean2, income16 != ".s:  Skipped on Web")
+rm(clean2)
+
+table(clean3)
 
 
 
 
 #### Save data ####
 # [...UPDATE THIS...]
-# change cleaned_data to whatever name you end up with at the end of cleaning
-write_csv(cleaned_data, "outputs/data/cleaned_data.csv")
+# change the_raw_data to whatever name you assigned when you downloaded it.
+write_csv(the_raw_data, "inputs/data/raw_data.csv") 
