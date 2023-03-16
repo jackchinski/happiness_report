@@ -82,12 +82,15 @@ rm(master_clean4)
 ##master_clean5 groups all the cleaned incomes in 5 ranges: . This helps us better
 ##represent the data later in the analysis
 
+write.csv(clean5, "inputs/data/clean5.csv")
+
 master_clean5$new_income_range <- ifelse(master_clean5$income16 %in% c("UNDER $1 000", "$1 000 TO 2 999", "$3 000 TO 3 999", "$4 000 TO 4 999", "$5 000 TO 5 999", "$6 000 TO 6 999",
                                                          "$7 000 TO 7 999", "$8 000 TO 9 999"), "0 to 9 999",
                                   ifelse(master_clean5$income16 %in% c("$10000 TO 12499", "$12500 TO 14999", "$15000 TO 17499", "$17500 TO 19999"), "10 000 to 19 999",
                                          ifelse(master_clean5$income16 %in% c("$20000 TO 22499", "$22500 TO 24999", "$25000 TO 29999", "$30000 TO 34999", "$35000 TO 39999"), "20 000 to 39 999", 
                                                 ifelse(master_clean5$income16 %in% c("$40000 TO 49999", "$50000 TO 59999", "$60000 TO 74999", "$75000 TO $89999"), "40 000 to 89 999", 
                                                        ifelse(master_clean5$income16 %in% c("$90000 TO $109999", "$110000 TO $129999", "$130000 TO $149999", "$150000 TO $169999", "$170000 OR OVER"), "90 000 to 170 000", "other")))))
+
 
 # master_clean8 reduced the num of entires to 1745 from 3496. This will be
 # used to represent data on married and interpretable respondents.
@@ -116,8 +119,13 @@ master_clean10 <- subset(master_clean5, health != ".s:  Skipped on Web")
 # because it represents both married, unmarried, or skipped entries respondents.
 master_clean11 <- subset(master_clean5, happy != ".s:  Skipped on Web")
 
+## Output all of our datasets in usable csvs.
 
-
+write.csv(master_clean5, "outputs/data/master_cleaned.csv")
+write.csv(master_clean8, "outputs/data/hapmar_cleaned.csv")
+write.csv(master_clean9, "outputs/data/finalter_cleaned.csv")
+write.csv(master_clean10, "outputs/data/health_cleaned.csv")
+write.csv(master_clean11, "outputs/data/happy_cleaned.csv")
 
 
 
