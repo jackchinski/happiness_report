@@ -12,7 +12,6 @@
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
-# [...UPDATE THIS...]
 
 #### Import the data ####
 GSS <- read_csv("inputs/data/GSS_csv_final.csv")
