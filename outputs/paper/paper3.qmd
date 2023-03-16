@@ -19,27 +19,49 @@ library(tidyverse)
 library(dplyr)
 library(ggplot2)
 
+quartoclean5 <- read_csv("../../inputs/data/clean5.csv")
 
 ```
 
-# Introduction
+# 1 Introduction
 
 
-# Data Source
+
+# 2 Data
+
+## 2.1 Tools Used
 
 
-# Data Gathering
+
+## 2.2 Survey Methodology
 
 
-# Results
+
+## 2.3 Survey Biases and Ethics
+
+
+
+## 2.4 Data Collection
+
+
+
+## 2.5 Data Cleaning
+
+
+
+# 3 Results
+
+
+
+\newpage
 
 ```{r}
 #| label: fig-satfincome
-#| fig-cap: Visualization of...
+#| fig-cap: Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
 #| echo: false
 
 ggplot( 
-  clean5, aes(
+  quartoclean5, aes(
     x = new_income_range, fill = satfin)) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
@@ -53,8 +75,14 @@ ggplot(
 
 ```
 
-# Discussion
+# 4 Discussion
 
 
-# Appendix
+
+## 4.1 Limitations
+
+
+
+# 5 Appendix
+
 
