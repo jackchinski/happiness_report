@@ -1,27 +1,9 @@
-# Starter folder
-
-## Overview
-
-This is the readme file for Paper 3 written by Jin Di Lu, Justin Abando, and Marcin Jaczynski
-
-## File Structure
-
-The repo is structured as:
-
-- `input/data` contains the raw data source used to produce everything. 
-
-While we do not have the formal permission to share GSS data, this raw data is essential to the functionality and reproducibility of the rest of the document. 
-
-Hence, for the sake of legal reproducibility, another readme file is written with precise steps as to how to obtain the raw data source from the GSS NORC website. It is saved as "readme_rawdata" in /inputs/ and accessible as an html file. 
-
-Another copy of the readme to produce the raw data will be provided here, in addition to being in the input/data folder.
-
-- `outputs/data` contains the cleaned dataset that was constructed from the raw dataset.
-
-- `outputs/paper` contains the files used to generate the paper, including the Quarto document and reference bibliography file, as well as the PDF of the paper.
-
-- `scripts` contains the R scripts used to simulate, download and clean data.
-
+---
+title: "readme_rawdata"
+author: "Jin Di Lu"
+date: "2023-03-16"
+output: html_document
+---
 ## Raw Data Acquision readme
 (Preface: this process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel.)
 
