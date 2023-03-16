@@ -20,6 +20,12 @@ library(dplyr)
 library(ggplot2)
 
 quartoclean5 <- read_csv("../../inputs/data/clean5.csv")
+happycleaned <- read_csv("../../outputs/data/happy_cleaned.csv")
+finaltercleaned <-read_csv("../../outputs/data/finalter_cleaned.csv")
+hapmarcleaned <- read_csv("../../outputs/data/hapmar_cleaned.csv")
+healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
+mastercleaned <-read_csv("../../outputs/data/master_cleaned.csv")
+
 
 ```
 
@@ -61,7 +67,7 @@ quartoclean5 <- read_csv("../../inputs/data/clean5.csv")
 #| echo: false
 
 ggplot( 
-  quartoclean5, aes(
+  master_clean5, aes(
     x = new_income_range, fill = satfin)) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
@@ -74,6 +80,48 @@ ggplot(
        fill = "Financial Satisfaction")
 
 ```
+
+```{r}
+#| label: fig-satfinhappy
+#| fig-cap: ???
+#| echo: false
+
+ggplot( 
+  happycleaned, aes(
+    x = happy, fill = satfin)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Happiness Response", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Financial Satisfaction")
+
+```
+
+
+```{r}
+#| label: fig-happyincome
+#| fig-cap: ???
+#| echo: false
+
+ggplot( 
+  happycleaned, aes(
+    x = new_income_range, fill = happy)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Happiness Response")
+
+```
+
 
 # 4 Discussion
 
