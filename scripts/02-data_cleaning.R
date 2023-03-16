@@ -32,10 +32,10 @@ rm(clean1)
 clean3 <- subset(clean2, income16 != ".s:  Skipped on Web")
 rm(clean2)
 
-clean4 <- subset(clean3, satfin != ".n: No answer")
+clean4 <- subset(clean3, satfin != ".n:  No answer")
 rm(clean3)
 
-clean5 <- subset(clean4, satfin != ".s: Skipped on Web")
+clean5 <- subset(clean4, satfin != ".s:  Skipped on Web")
 rm(clean4)
 
 
