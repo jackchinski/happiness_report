@@ -20,20 +20,22 @@ library(dplyr)
 library(ggplot2)
 
 quartoclean5 <- read_csv("../../inputs/data/clean5.csv")
+mastercleaned <-read_csv("../../outputs/data/master_cleaned.csv")
 happycleaned <- read_csv("../../outputs/data/happy_cleaned.csv")
 finaltercleaned <-read_csv("../../outputs/data/finalter_cleaned.csv")
 hapmarcleaned <- read_csv("../../outputs/data/hapmar_cleaned.csv")
 healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
-mastercleaned <-read_csv("../../outputs/data/master_cleaned.csv")
 
 
 ```
 
+
+
 # 1 Introduction
 
 
-
 # 2 Data
+
 
 ## 2.1 Tools Used
 
@@ -59,13 +61,10 @@ mastercleaned <-read_csv("../../outputs/data/master_cleaned.csv")
 
 
 
-\newpage
-
 ```{r}
 #| label: fig-satfincome
 #| fig-cap: Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
 #| echo: false
-
 ggplot( 
   master_clean5, aes(
     x = new_income_range, fill = satfin)) + 
@@ -82,22 +81,30 @@ ggplot(
 ```
 
 ```{r}
+happycleaned %>% 
+  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "cell") %>% 
+  add_p()
+```
+
+
+```{r}
 #| label: fig-satfinhappy
 #| fig-cap: ???
 #| echo: false
 
-ggplot( 
+ggplot(
   happycleaned, aes(
-    x = happy, fill = satfin)) + 
+    x = satfin, fill = happy)) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
   theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
     angle = 60, 
     hjust = 1)) + 
-  labs(x = "Happiness Response", #Labeling the axes and fill section
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
        y = "Frequency",
-       fill = "Financial Satisfaction")
+       fill = "Happiness Response")+
+  scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 
 ```
 
@@ -120,6 +127,102 @@ ggplot(
        y = "Frequency",
        fill = "Happiness Response")
 
+```
+```{r}
+ggplot( 
+  hapmarcleaned, aes(
+    x = satfin, fill = hapmar)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Happiness of Marriage")+
+  scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
+```
+
+```{r}
+#| label: fig-happyincome
+#| fig-cap: ???
+#| echo: false
+
+ggplot( 
+  hapmarcleaned, aes(
+    x = new_income_range, fill = hapmar)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Happiness of Marriage")
+```
+
+```{r}
+ggplot( 
+  healthcleaned, aes(
+    x = new_income_range, fill = health)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Income Ranges", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Health")
+```
+
+```{r}
+ggplot( 
+  healthcleaned, aes(
+    x = satfin, fill = health)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Health")+
+    scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
+```
+
+```{r}
+ggplot( 
+  finaltercleaned, aes(
+    x = new_income_range, fill = finalter)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Income Ranges", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Changes in Wealth")
+```
+
+```{r}
+ggplot( 
+  finaltercleaned, aes(
+    x = satfin, fill = finalter)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Financial Satisfaction", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Changes in Wealth")+
+    scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
 
