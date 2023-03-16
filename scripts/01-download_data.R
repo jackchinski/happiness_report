@@ -1,20 +1,23 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Data: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Downloads and saves the data from GSS
+# Author: Marcin Jaczynski 
+# Data: 15 March 2023
+# Contact: marcin.jaczynski@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: none
+# Any other information needed? No 
 
 
 #### Workspace setup ####
 library(opendatatoronto)
 library(tidyverse)
+library(tibble)
 # [...UPDATE THIS...]
 
 #### Download data ####
-# [...ADD CODE HERE TO DOWNLOAD...]
+GSS <- read_csv("GSS_csv_final.csv")
+
+
 
 
 
