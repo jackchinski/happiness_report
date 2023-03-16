@@ -18,6 +18,8 @@ knitr::opts_chunk$set(echo=TRUE)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(gtsummary)
+library(flextable)
 
 quartoclean5 <- read_csv("../../inputs/data/clean5.csv")
 mastercleaned <-read_csv("../../outputs/data/master_cleaned.csv")
@@ -25,7 +27,6 @@ happycleaned <- read_csv("../../outputs/data/happy_cleaned.csv")
 finaltercleaned <-read_csv("../../outputs/data/finalter_cleaned.csv")
 hapmarcleaned <- read_csv("../../outputs/data/hapmar_cleaned.csv")
 healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
-
 
 ```
 
@@ -59,14 +60,23 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 
 # 3 Results
 
+\newpage
+```{r}
+#| label: table-satfinincome
+#| tbl-cap: Table Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
+#| echo: false
+#| message: false
+table_satfinincome <- mastercleaned %>% 
+  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Finances"), percent = "column")
 
+```
 
 ```{r}
 #| label: fig-satfincome
 #| fig-cap: Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
 #| echo: false
 ggplot( 
-  master_clean5, aes(
+  mastercleaned, aes(
     x = new_income_range, fill = satfin)) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
@@ -80,22 +90,29 @@ ggplot(
 
 ```
 
+\newpage
 ```{r}
-master_clean5 %>% 
-  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Financial Satisfaction"), percent = "column")
-```
-```{r}
+#| label: table-happyandsatfin
+#| fig-cap: something
+#| echo: false
+#| message: false
 happycleaned %>% 
   tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column")
 ```
 ```{r}
+#| label: table-happyandincomes
+#| fig-cap: something2
+#| echo: false
+#| message: false
 happycleaned %>% 
   tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column")
 ```
 
+\newpage
+
 ```{r}
 #| label: fig-satfinhappy
-#| fig-cap: ???
+#| fig-cap: something3
 #| echo: false
 
 ggplot(
@@ -113,7 +130,7 @@ ggplot(
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 
 ```
-
+\newpage
 
 ```{r}
 #| label: fig-happyincome
@@ -134,7 +151,29 @@ ggplot(
        fill = "Happiness Response")
 
 ```
+\newpage
 ```{r}
+#| label: table-hapmarsatfin
+#| fig-cap: something2
+#| echo: false
+#| message: false
+hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
+```
+
+```{r}
+#| label: table-hapmarincome
+#| fig-cap: something2
+#| echo: false
+#| message: false
+hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
+```
+\newpage
+```{r}
+#| label: fig-hapmarsatfin
+#| fig-cap: something2
+#| echo: false
 ggplot( 
   hapmarcleaned, aes(
     x = satfin, fill = hapmar)) + 
@@ -149,19 +188,9 @@ ggplot(
        fill = "Happiness of Marriage")+
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
-
+\newpage
 ```{r}
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
-```
-
-```{r}
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
-```
-
-```{r}
-#| label: fig-happyincome
+#| label: fig-hapmarincome
 #| fig-cap: ???
 #| echo: false
 
@@ -178,33 +207,29 @@ ggplot(
        y = "Frequency",
        fill = "Happiness of Marriage")
 ```
-
+\newpage
 ```{r}
+#| label: table-healthsatfin
+#| fig-cap: something2
+#| echo: false
+#| message: false
 healthcleaned %>% 
   tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column")
 ```
 
 ```{r}
+#| label: table-healthincome
+#| fig-cap: something2
+#| echo: false
+#| message: false
 healthcleaned %>% 
   tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column")
 ```
-
+\newpage
 ```{r}
-ggplot( 
-  healthcleaned, aes(
-    x = new_income_range, fill = health)) + 
-  geom_bar(
-    position = "stack") + #Creating a stacked bar plot
-  theme_minimal() + #Using a simple theme
-  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
-    angle = 60, 
-    hjust = 1)) + 
-  labs(x = "Income Ranges", #Labeling the axes and fill section
-       y = "Frequency",
-       fill = "Health")
-```
-
-```{r}
+#| label: fig-healthsatfin
+#| fig-cap: something2
+#| echo: false
 ggplot( 
   healthcleaned, aes(
     x = satfin, fill = health)) + 
@@ -219,23 +244,14 @@ ggplot(
        fill = "Health")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
-
+\newpage
 ```{r}
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
-```
-
-
-```{r}
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
-```
-
-
-```{r}
+#| label: fig-healthincome
+#| fig-cap: something2
+#| echo: false
 ggplot( 
-  finaltercleaned, aes(
-    x = new_income_range, fill = finalter)) + 
+  healthcleaned, aes(
+    x = new_income_range, fill = health)) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -244,10 +260,31 @@ ggplot(
     hjust = 1)) + 
   labs(x = "Income Ranges", #Labeling the axes and fill section
        y = "Frequency",
-       fill = "Changes in Wealth")
+       fill = "Health")
+```
+\newpage
+```{r}
+#| label: table-finaltsatfin
+#| fig-cap: something2
+#| echo: false
+#| message: false
+finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
 ```
 
 ```{r}
+#| label: table-finaltincome
+#| fig-cap: something2
+#| echo: false
+#| message: false
+finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+```
+\newpage
+```{r}
+#| label: fig-finaltsatfin
+#| fig-cap: something2
+#| echo: false
 ggplot( 
   finaltercleaned, aes(
     x = satfin, fill = finalter)) + 
@@ -261,6 +298,24 @@ ggplot(
        y = "Frequency",
        fill = "Changes in Wealth")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
+```
+\newpage
+```{r}
+#| label: fig-finaltincome
+#| fig-cap: something2
+#| echo: false
+ggplot( 
+  finaltercleaned, aes(
+    x = new_income_range, fill = finalter)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Income Ranges", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Changes in Wealth")
 ```
 
 

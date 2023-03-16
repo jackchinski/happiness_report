@@ -108,13 +108,13 @@ rm(master_clean7)
 # we decided to make this subset from master_clean 5
 # because it represents both married, unmarried, or skipped entries respondents.
 master_clean9 <- subset(master_clean5, finalter != ".s:  Skipped on Web")
-master_clean10 <- subset(master_clean9, happy != ".d:  Do not Know/Cannot Choose")
+master_clean10 <- subset(master_clean9, finalter != ".d:  Do not Know/Cannot Choose")
 
 # master_clean 10 will represent the health of all respondents that did not
 # skip the survey question on web. we decided to make this subset from master_clean 5
 # because it represents both married and unmarried respondents.
 master_clean11 <- subset(master_clean5, health != ".s:  Skipped on Web")
-master_clean12 <- subset(master_clean11, happy != ".d:  Do not Know/Cannot Choose")
+master_clean12 <- subset(master_clean11, health != ".d:  Do not Know/Cannot Choose")
 
 # master_clean 11 will represent the happiness of all respondents that did not
 # skip the survey question on web. we decided to make this subset from master_clean 5
