@@ -81,11 +81,17 @@ ggplot(
 ```
 
 ```{r}
-happycleaned %>% 
-  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "cell") %>% 
-  add_p()
+master_clean5 %>% 
+  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Financial Satisfaction"), percent = "column")
 ```
-
+```{r}
+happycleaned %>% 
+  tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column")
+```
+```{r}
+happycleaned %>% 
+  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column")
+```
 
 ```{r}
 #| label: fig-satfinhappy
@@ -145,6 +151,16 @@ ggplot(
 ```
 
 ```{r}
+hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
+```
+
+```{r}
+hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
+```
+
+```{r}
 #| label: fig-happyincome
 #| fig-cap: ???
 #| echo: false
@@ -161,6 +177,16 @@ ggplot(
   labs(x = "Financial Satisfaction", #Labeling the axes and fill section
        y = "Frequency",
        fill = "Happiness of Marriage")
+```
+
+```{r}
+healthcleaned %>% 
+  tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column")
+```
+
+```{r}
+healthcleaned %>% 
+  tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column")
 ```
 
 ```{r}
@@ -193,6 +219,18 @@ ggplot(
        fill = "Health")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
+```{r}
+finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+```
+
+
+```{r}
+finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+```
+
 
 ```{r}
 ggplot( 
