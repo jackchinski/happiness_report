@@ -108,24 +108,27 @@ rm(master_clean7)
 # we decided to make this subset from master_clean 5
 # because it represents both married, unmarried, or skipped entries respondents.
 master_clean9 <- subset(master_clean5, finalter != ".s:  Skipped on Web")
+master_clean10 <- subset(master_clean9, happy != ".d:  Do not Know/Cannot Choose")
 
 # master_clean 10 will represent the health of all respondents that did not
 # skip the survey question on web. we decided to make this subset from master_clean 5
 # because it represents both married and unmarried respondents.
-master_clean10 <- subset(master_clean5, health != ".s:  Skipped on Web")
+master_clean11 <- subset(master_clean5, health != ".s:  Skipped on Web")
+master_clean12 <- subset(master_clean11, happy != ".d:  Do not Know/Cannot Choose")
 
 # master_clean 11 will represent the happiness of all respondents that did not
 # skip the survey question on web. we decided to make this subset from master_clean 5
 # because it represents both married, unmarried, or skipped entries respondents.
-master_clean11 <- subset(master_clean5, happy != ".s:  Skipped on Web")
+master_clean13 <- subset(master_clean5, happy != ".s:  Skipped on Web")
+master_clean14 <- subset(master_clean13, happy != ".d:  Do not Know/Cannot Choose")
 
 ## Output all of our datasets in usable csvs.
 
 write.csv(master_clean5, "outputs/data/master_cleaned.csv")
 write.csv(master_clean8, "outputs/data/hapmar_cleaned.csv")
-write.csv(master_clean9, "outputs/data/finalter_cleaned.csv")
-write.csv(master_clean10, "outputs/data/health_cleaned.csv")
-write.csv(master_clean11, "outputs/data/happy_cleaned.csv")
+write.csv(master_clean10, "outputs/data/finalter_cleaned.csv")
+write.csv(master_clean12, "outputs/data/health_cleaned.csv")
+write.csv(master_clean14, "outputs/data/happy_cleaned.csv")
 
 
 
