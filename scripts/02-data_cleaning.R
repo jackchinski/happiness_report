@@ -119,8 +119,13 @@ master_clean10 <- subset(master_clean5, health != ".s:  Skipped on Web")
 # because it represents both married, unmarried, or skipped entries respondents.
 master_clean11 <- subset(master_clean5, happy != ".s:  Skipped on Web")
 
+## Output all of our datasets in usable csvs.
 
-
+write.csv(master_clean5, "outputs/data/master_cleaned.csv")
+write.csv(master_clean8, "outputs/data/hapmar_cleaned.csv")
+write.csv(master_clean9, "outputs/data/finalter_cleaned.csv")
+write.csv(master_clean10, "outputs/data/health_cleaned.csv")
+write.csv(master_clean11, "outputs/data/happy_cleaned.csv")
 
 
 
