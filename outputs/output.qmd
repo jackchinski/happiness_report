@@ -1,0 +1,60 @@
+---
+title: "Well-being of Individuals from the United States Global Social Survey are Affected by Finances, Relationships, and Health"
+author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
+thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
+date: "`r Sys.time()`"
+date-format: "D MMMM YYYY"
+abstract: "DON'T FORGET THIS"
+format: pdf
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+
+knitr::opts_chunk$set(echo=TRUE)
+
+###Workplace Setup###
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+
+
+```
+
+# Introduction
+
+
+# Data Source
+
+
+# Data Gathering
+
+
+# Results
+
+```{r}
+#| label: fig-satfincome
+#| fig-cap: Visualization of...
+#| echo: false
+
+ggplot( 
+  clean5, aes(
+    x = new_income_range, fill = satfin)) + 
+  geom_bar(
+    position = "stack") + #Creating a stacked bar plot
+  theme_minimal() + #Using a simple theme
+  theme(axis.text.x=element_text( #Adjusting horizontal axis text to be easily readable
+    angle = 60, 
+    hjust = 1)) + 
+  labs(x = "Income Ranges", #Labeling the axes and fill section
+       y = "Frequency",
+       fill = "Financial Satisfaction")
+
+```
+
+# Discussion
+
+
+# Appendix
+
