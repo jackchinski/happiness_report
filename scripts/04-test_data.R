@@ -9,6 +9,18 @@
 
 #### Workspace setup ####
 library(tidyverse)
+# [...UPDATE THIS...]
+#### Preamble ####
+# Purpose: Tests for simulated data
+# Author: Justin Abando, Jin Di Liu, Marcin Jaczynski
+# Data: 17 March 2023
+# Contact: justin.abando@mail.utoronto.ca
+# Pre-requisites: Requires data from 00-simulate_data.R to be loaded
+# Any other information needed? N/A
+
+
+#### Workspace setup ####
+library(tidyverse)
 
 #### Test data ####
 

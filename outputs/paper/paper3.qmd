@@ -1,5 +1,5 @@
 ---
-title: "Well-being of Individuals from the United States Global Social Survey are Affected by Finances, Relationships, and Health"
+title: "An Analysis of the positive effects between Finances and General Well Being."
 author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
 thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
 date: "`r Sys.time()`"
@@ -30,65 +30,81 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 
 ```
 
+# 1 Introduction
+
+The advent of 2023 is one marked with economic hardship and depression. After the pandemic, markets scrambled as inflation rose to an all time high and signs of economic downturn began creeping through in the form of layoffs and reduced spending. Because of this, we wanted to investigate the effects that finances (economic statuses and hardships) have on well being. For our investigation, we wished to interrogate elements that we believe are representative of well being in relation to financial wellbeing. Specifically, we chose to investigate factors such as happiness, health, happiness of marriage, and life excitement. We were able to identify interesting correlations between quality of health, happiness, and happiness of marriage with financial satisfaction and income.
+
+To first get a better grasp of this investigation, we conducted a small literature review on the relationships between finances and well being in the United States. A common well known relationship between well being and finances is the positive correlation between Life Satisfaction and Economic well being [@helliwell2012world]. Furthermore, there are other economic theories that also attempt to interrogate the relationship between happiness and economic well being such as the Easterlin Paradox [@easterlin1974does]. In this regard, the positive correlation between finances and happiness is well understood. However, looking deeper into the literature, we can also identify how the deprivation of economic well being can also negatively impact an individual's quality of life. Specifically, research shows that economic hardship can impact marital quality and cause instability. This is due to an increase in occupational and financial stress that generate frustration, stress, anger and depression. [@conger1990linking] Furthermore, economic hardships can also inflict long-term consequences on children psychological well being in adulthood. [@sobolewski2005economic]. Finally, economic hardships play a major role in increasing depression levels, as depression can emerge as a byproduct of low income, education, being young, and having young children. [@ross1985hardship] Based on our brief literature review and the current economic climate of 2023, we were inspired to engage with the GSS 2021 survey data to answer questions about the impact of financial satisfaction with overall well being.
 
 
-# 1 Introduction {sec-introduction}
+This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
+## 2.1 Survey Methodology
 
+This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
-# 2 Data {sec-data}
+The sample for the 2021 survey consisted of adults aged 18 and older living in privately owned homes in the US. To select respondents, the "last birthday method" was used, which involves selecting the adult with the most recent birthday to when the mail was sent out. Prior to the pandemic, the selection process was more rigorous, with an interviewer physically present to assist respondents and make the selection after all adults had filled in an introductory form. For the 2021 survey, materials were mailed to participants with a web link invitation instead. The response rate was 17.4%, with 88.3% of respondents completing the survey via the web and 11.7% completing it via phone. A total of 4,032 surveys were completed between December 1, 2020, and May 3, 2021.
 
+## 2.2 Survey Biases and Ethics
 
+The lack of an interviewer implied the possibility of non-response, as participants are less socially pressured to fill out responses they may or may not feel inclined to report. To address this, an introductory form was administered to all participating adults which somewhat ensured that those taking the survey are dedicated enough to offer adequate responses.This was a trade off in the sampling approach that must be noted compared to previous years. Therefore, weights were carefully placed to account for factors such as population totals, density of surveyed addresses nearby, and non-response. The weighting system must account for new data and be similar to previous years to avoid skewing the results. However, despite all of these measures and countermeasures, the greatest challenge against the GSS (in all years) is the threat of survey bias, as all the data collected for all surveys are from participants willing to fill out a 90 minute survey. This could mean that the only people represented in the GSS survey are those with the free time and willingness to offer survey responses to NORC, potentially misrepresenting the overall population.
 
-## 2.1 Tools Used {sec-toolsused}
+Furthermore, the GSS 2021 survey has made changes to the survey response options due to the shift from in-person interviews to web and phone-based interviews. The survey originally contained "volunteered responses" that were not displayed to respondents but used by interviewers. However, interviewers are unable to add volunteer responses in this year's survey because of the lack of interaction on web and phone-based interviews. The GSS adopted a new structure for volunteered responses on the web mode by creating two different versions of forms, one with and one without volunteered responses as an option. Any changes in public opinion seen in the 2021 GSS data could be due to actual changes in public opinion or the newly adopted methodology and should be closely monitored and considered in analysis.
 
+Changes to "Don't Know" and "No Answer" responses have also been made in the 2021 GSS survey. Traditionally, these options were not shown to respondents, and it was only recorded if the respondent did not wish to answer. On the web mode, however, responders can only skip the question, and the option of "No Answer" was removed. The option of "Don't Know" was also removed from attitudinal questions and only displayed in light-gray as an option for factual questions. Implementing these changes exposes the survey to more "No Answer" and "Don't Know" responses, which could lead to a loss of information. However, the GSS codebook has stated that there was no significant increase in respondents choosing these options, but they encourage further investigation as this finding is still preliminary.
 
+The data that was represented in this analysis has many considerations to take into account. First, it must be considered that these results are highly generalized, as one respondent in the GSS survey corresponds to 90,000 people. This is the result of how the data was collected, and as such the data visualizations are only to be seen in a general context. In addition, we also have to consider that opinions of what people are thinking are not substantial enough to confidently argue in absolutes in regards to the correlation between well-being and the variables that were analyzed. This also applies to the fact that respondents can still lie on the survey as there is no way to verify if the respondents were answering truthfully over a survey. It must also be considered that volunteer bias is present with this survey, as those respondents that have time and access to contribute to the survey would be more likely to take part. As a result, this data may misrepresent the population as those that have the free time to offer these opinions may be more well off. While it's great to include anyone in the survey, the assumption can be made that more respondents would likely consist of individuals that are well off.
 
-## 2.2 Survey Methodology {sec-surveymethods}
+Furthermore, the nature of sentiment-based questions in the GSS can be difficult to conceptualize. In GSS Methodological Report No. 127, Tom W. Smith investigates the nature of vague questions such as SATJOB (Job Satisfaction) and how it is a subjective concept that varies in definition depending on the respondent. Specifically, he quotes another paper that writes "there probably are several types of feelings that people have which can be satisfaction or which influence their feelings of satisfaction about their job."(Wanous and Lawler, 1972) In other words, depending on the categories, feelings, and values respondents assign to their jobs, the satisfaction reported can be wildly different from one.
 
+Similarly, we wish to highlight this limitation in the GSS, as one of our most important variables SATFIN is also a subjective sentiment-based question that we will use to gauge the financial comfort of the respondents. To address this limitation, however, we have also decided to include income into our analysis in order to somewhat quantify the varying degrees of financial satisfaction before we set out to measure its impact on various aspects of well being.
 
+Another important vulnerability to identify is the outdatedness of certain variables. Specifically, variables such as income(respondent family income) and rincome (respondent income) are not scaled for inflation. The 12 income ranges used to represent respondents do not exceed 25 000. However, the GSS does acknowledge this, and has implemented different income ranges to accommodate for inflation. Specifically, we will be using income16 (respondent family income in 2016 and beyond) to represent the ranges of income of our respondents. Furthermore, we will be condensing these ranges during data cleaning to better visually interpret the data.
 
-## 2.3 Survey Biases and Ethics {sec-surveyethics}
+## 2.3 Data Collection
 
+In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R [@rcoreteam2022]. The tidyverse package [@wickham2019] was used to load in the dplyr package to filter variables [@wickham2023], and ggplot2 to visualize the data in graphs [@wickham2016]. Furthermore, we also employed packages gtsummary [@gtsummary] and [@flextable] to create table visualizations and summaries of our findings 
 
+The data extraction process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file, in our Github repository.
 
-## 2.4 Data Collection {sec-datacollection}
+The data that was chosen to be analyzed from the GSS were variables that involved subjective opinions about the respondent's well-being in tandem with socio-economic variables that act as potential contributors to their state. These specific variables are:
 
-This process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file in our Github repository. 
+-   HAPPY: Subjective opinion of the respondent's happiness
 
-In order to visualize the results of the GSS, the data was imported and analyzed using R [@rcoreteam2022]. The tidyverse package [@wickham2019] was used to load in the dplyr package to filter variables [@wickham2023], and ggplot2 to visualize the data in graphs [@wickham2016]. 
+<!-- -->
 
-The data that was chosen to be analyzed from the GSS were variables that involved subjective opinions about the respondent’s well-being in tandem with socioeconomic variables that act as potential contributors to their state. These specific variables are:
+-   HAPMAR: Subjective opinion of the respondents' current happiness in their marriage (if they are married)
 
-HAPPY: Subjective opinion of the respondent’s happiness
-HAPMAR: Subjective opinion of the respondents’ current happiness in their marriage (if they are married)
-HEALTH: Subjective opinion of the respondent’s current health status
-SATFIN: Financial satisfaction of the respondent
-INCOME16: Total family income of the respondent, which includes: total income includes interest or dividends, rent, social security, other pensions, alimony or child support, unemployment compensation, public aid (welfare), armed forces or veteran's allotment. 
-FINALTER: Subjective opinion of the respondent’s financial situation in the past few years since 2021.
+-   HEALTH: Subjective opinion of the respondent's current health status
 
-Before we chose any of the other variables, we decided to first pick out INCOME16 and SATFIN. The reason for this is because we want to be able to gauge what range of income respondents would identify as a range where they would be financially satisfied. The reason for this is to quantify financial satisfaction on the basis of income, as this allows us to translate the sentiment of satisfaction into a tangible number. Similarly, happiness in a marriage context with HAPMAR was also chosen to be analyzed as social relationships play a large role in a person’s sense of belonging, and so we wanted to assess how living with a partner can affect their well-being in a measurable way. HEALTH is used to gauge how people feel about their general health condition, and can predict to a certain extent their well-being. These variables will be further explored in our data analysis (or can be demonstrated right now in a graph). Overall, our attention was turned to three specific factors: finances, relationships, and health. These variables were chosen to be analyzed as they represent core dimensions that are interconnected with well-being and how humans experience and feel about life [@rath2010]. Discussing these factors as they affect your well-being turns them into abstract concepts for people to visualize and describe to others, and so a subjective viewpoint was taken from respondents to gain an idea of how they affect them in a general context. 
+-   SATFIN: Financial satisfaction of the respondent
 
-## 2.5 Data Cleaning {sec-datacleaning}
+-   INCOME16: Total family income of the respondent, which includes: total income includes interest or dividends, rent, social security, other pensions, alimony or child support, unemployment compensation, public aid (welfare), armed forces or veteran's allotment. 
 
-In order to clean the data, we started by selecting all of the applicable columns to make two separate data frames. The first one consisted of SATFIN, which is financial satisfaction, and the INCOME16 column which is a family’s yearly income. While trying to visualize the data, we decided to make more general income ranges, instead of the twenty six that were provided in the original INCOME16 column. We settled on five income ranges. We did so, by creating an ifelse statement that would add an additional column “new_income_range” with our own set income ranges depending on the INCOME16 value. We then removed all invalid entries that consisted of either “incomplete”, “did not answer”, or “did not complete online” values. Similarly, we made another master_clean dataset, in which we selected the columns HAPPY, HAMPAR, HEALTH, FINALTER, SAFTIN, INCOME16, and GROUPED_INC. We then followed the same methodology of adding our own column for our custom income range, and removing all invalid entries from all of the invalid rows.
+-   FINALTER: Subjective opinion of the respondent's financial situation in the past few years since 2021.
 
+Before we chose any of the other variables, we decided to first pick out INCOME16 and SATFIN. The reason for this is because we want to be able to gauge what range of income respondents would identify as a range where they would be financially satisfied. The reason for this is to quantify financial satisfaction on the basis of income, as this allows us to translate the sentiment of satisfaction into a tangible number. Similarly, happiness in a marriage context with HAPMAR was also chosen to be analyzed as social relationships play a large role in a person's sense of belonging, and so we wanted to assess how living with a partner can affect their well-being in a measurable way. HEALTH is used to gauge how people feel about their general health condition, and can predict to a certain extent their well-being. These variables will be further explored in our data analysis (or can be demonstrated right now in a graph). Overall, our attention was turned to three specific factors: finances, relationships, and health. These variables were chosen to be analyzed as they represent core dimensions that are interconnected with well-being and how humans experience and feel about life \[\@rath2010\]. Discussing these factors as they affect your well-being turns them into abstract concepts for people to visualize and describe to others, and so a subjective viewpoint was taken from respondents to gain an idea of how they affect them in a general context.
 
-# 3 Results {sec-results}
+We also currently have variable "- LIFE:"Subjective opinion of respondent's view on life as dull, routine, or exciting" included in the data extract. We ended up not working with this variable as it only included samples from two out of the 3 ballots employed in 2021.
 
-In this section we cross-analyze each of the variables as outlined in {sec-datacollection} with themselves. This involves comparing the answers from two questions on the survey in order to draw potential trends between the respondents' feelings about the specific topic and their opinion of their well-being in relation to it.
+## 2.4 Data Cleaning
+
+In order to clean the data, we started by selecting all of the applicable columns to make two separate data frames. The first one consisted of SATFIN, which is financial satisfaction, and the INCOME16 column which is a family's yearly income. While trying to visualize the data, we decided to make more general income ranges, instead of the twenty six that were provided in the original INCOME16 column. We settled on five income ranges (which we will later discuss in discussions). We did so by creating an ifelse statement that would add an additional column "new_income_range" with our own set income ranges depending on the INCOME16 value. We then removed all invalid entries that consisted of either "incomplete", "did not answer", or "did not complete online" values. Similarly, we made another master_clean dataset, in which we selected the columns HAPPY, HAMPAR, HEALTH, FINALTER, SAFTIN, INCOME16, and GROUPED_INC. We then followed the same methodology of adding our own column for our custom income range, and removing all invalid entries from all of the invalid rows.
 
 \newpage
 
+# 3 Results
+
 ```{r}
 #| label: table-satfinincome
-#| tbl-cap: Table Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
+#| tbl-cap: Financial Satisfaction vs. Income Ranges
 #| echo: false
 #| message: false
 table_satfinincome <- mastercleaned %>% 
-  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Finances"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Income Ranges")
+  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Financial Satisfaction"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Income Ranges")
 
-table_satfinincome %>%
+table_satfinincome %>% autofit() %>% fit_to_width(6.5)
+
 
 ```
 
@@ -101,7 +117,7 @@ table_satfinincome %>%
 #| echo: false
 ggplot( 
   mastercleaned, aes(
-    x = new_income_range, fill = satfin)) + 
+    x = new_income_range, fill = factor(satfin, levels = c("Pretty well satisfied", "More or less satisfied", "Not satisfied at all")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -114,26 +130,30 @@ ggplot(
 
 ```
 
-
+According to @fig-satfincome, when comparing the financial satisfaction of respondents with their income ranges, the number of respondents from the \$0 - \$89,999 ranges that claim they are not satisfied at all are relatively similar. However, when examining the total number of respondents within their respective income ranges, it can be seen that it increases as the income range increases. This indicates that the proportion of respondents that do not feel satisfied at all decreases as the income range increases. Conversely, more respondents claim that they are either more or less satisfied or pretty well satisfied as the income range increases, and are heavily skewed to those that have higher income ranges.
 
 \newpage
 
-
 ```{r}
 #| label: table-happyandsatfin
-#| fig-cap: something
+#| tbl-cap: Financial Satisfaction vs. Happiness
 #| echo: false
 #| message: false
-happycleaned %>% 
-  tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column")
+table_happinesssatfin <- happycleaned %>% 
+  tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness")
+
+table_happinesssatfin %>% autofit() %>% fit_to_width(6.5)
 ```
+
 ```{r}
 #| label: table-happyandincomes
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Happiness
 #| echo: false
 #| message: false
-happycleaned %>% 
-  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column")
+table_happyandincomes <- happycleaned %>% 
+  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Income Ranges vs. Happiness")
+
+table_happyandincomes %>% autofit() %>% fit_to_width(6.5)
 ```
 
 
@@ -144,12 +164,12 @@ happycleaned %>%
 
 ```{r}
 #| label: fig-satfinhappy
-#| fig-cap: something3
+#| fig-cap: Relation between financial satisfaction and general happiness. More respondents appear to demonstrate they are generally happier when they also feel that they are financially satisfied. Conversely, a higher proportion of respondents that say that they are not financially satisfied are also not too happy as well, indicating a link between their general happiness with financial satisfaction.
 #| echo: false
 
 ggplot(
   happycleaned, aes(
-    x = satfin, fill = happy)) + 
+    x = satfin, fill = factor(happy, levels = c("Very happy", "Pretty happy", "Not too happy")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -163,7 +183,7 @@ ggplot(
 
 ```
 
-
+The comparison between the respondents' happiness and financial satisfaction are visualized on @fig-satfinhappy. We observe that the number of respondents that claimed that they are generally happy increased as the financial satisfaction of these respondents increased as well. A higher proportion of respondents that claim they are not too happy also respond that they are not financially satisfied, and so there seems to be a pattern of general happiness being linked to financial satisfaction.
 
 \newpage
 
@@ -171,12 +191,12 @@ ggplot(
 
 ```{r}
 #| label: fig-happyincome
-#| fig-cap: ???
+#| fig-cap: Relation between combined family income and general happiness of respondents. The happiness response proportions are relatively similar throughout each income range, with most respondents claiming they are pretty happy, and very happy responses increasing as the income range also increases.
 #| echo: false
 
 ggplot( 
   happycleaned, aes(
-    x = new_income_range, fill = happy)) + 
+    x = new_income_range, fill = factor(happy, levels = c("Very happy", "Pretty happy", "Not too happy")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -189,45 +209,44 @@ ggplot(
 
 ```
 
-
+The observation of respondents that describe their level of happiness compared to their income is demonstrated on @fig-happyincome. Each income group shows relatively similar proportions of respondents that claim that they are pretty happy, with fewer proportions claiming they are not too happy or very happy. However, as the income range increases, more respondents claim that they are pretty happy or very happy. There is an interesting observation with those families with a combined income of \$40,000 to \$89,999. This income group seems to have a slightly disproportionate amount of respondents saying they are not too happy when comparing with the proportions of other income groups.
 
 \newpage
 
-
-
 ```{r}
 #| label: table-hapmarsatfin
-#| fig-cap: something2
+#| tbl-cap: Financial Satisfaction vs. Happiness of Marriage
 #| echo: false
 #| message: false
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
+table_hapmarsatfin<- hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness of Marriage")
+
+table_hapmarsatfin %>% autofit() %>% fit_to_width(6.5)
+
 ```
 
 
 
 ```{r}
 #| label: table-hapmarincome
-#| fig-cap: something2
+#| tbl-cap: Income Range vs. Happiness of Marriage
 #| echo: false
 #| message: false
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
+table_hapmarincome <- hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness of Marriage")
+
+table_hapmarincome %>% autofit() %>% fit_to_width(6.5)
 ```
-
-
 
 \newpage
 
-
-
 ```{r}
 #| label: fig-hapmarsatfin
-#| fig-cap: something2
+#| fig-cap: Relation between married respondents’ opinion on their marriage and financial satisfaction. Respondents that claim they are happy in their marriage also express that they are financially satisfied. For respondents that claimed they are not satisfied financially, there are proportionally more respondents that also express they are not too happy within their marriage.
 #| echo: false
 ggplot( 
   hapmarcleaned, aes(
-    x = satfin, fill = hapmar)) + 
+    x = satfin, fill = factor(hapmar, levels = c("VERY HAPPY", "PRETTY HAPPY", "NOT TOO HAPPY")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -240,20 +259,18 @@ ggplot(
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
-
+For those that are married, a visualization of their financial satisfaction compared to their view of happiness in their marriage is seen in @fig-hapmarsatfin. It can be seen that most respondents that are more or less satisfied financially or pretty well satisfied generally are either pretty happy or very happy with their marriage. This also applies to respondents that claim they are not satisfied at all financially, however there is a lower frequency of respondents in this category. As a result, there is a higher proportion of respondents that claim that they are not too happy in their marriage in comparison to those respondents that claim they are more or less satisfied or pretty satisfied financially.
 
 \newpage
 
-
-
 ```{r}
 #| label: fig-hapmarincome
-#| fig-cap: ???
+#| fig-cap: Relation between married respondents’ opinion on their marriage and combined family income. As the combined family income increases, higher proportions of respondents claim that they are pretty happy or very happy with their marriage.
 #| echo: false
 
 ggplot( 
   hapmarcleaned, aes(
-    x = new_income_range, fill = hapmar)) + 
+    x = new_income_range, fill = factor(hapmar, levels = c("VERY HAPPY", "PRETTY HAPPY", "NOT TOO HAPPY")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -265,19 +282,19 @@ ggplot(
        fill = "Happiness of Marriage")
 ```
 
-
+From observing @fig-hapmarincome, the amount of respondents that are not too happy with their marriage are in the income range of 40,000 to 90,000. The number of not too happy responses is seen to increase as does income, however it falls slightly in the income range of \$90,000 to \$170,000 from the previous group. Additionally, very happy marriages are seen to be steadily increasing along with the income.
 
 \newpage
 
-
-
 ```{r}
 #| label: table-healthsatfin
-#| fig-cap: something2
+#| tbl-cap: Financial Satisfaction vs. Health
 #| echo: false
 #| message: false
-healthcleaned %>% 
-  tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column")
+table_healthsatfin <- healthcleaned %>% 
+  tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Health")
+
+table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
 ```
 
 
@@ -285,26 +302,24 @@ healthcleaned %>%
 
 ```{r}
 #| label: table-healthincome
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Health
 #| echo: false
 #| message: false
-healthcleaned %>% 
-  tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column")
+table_healthcleaned <- healthcleaned %>% 
+  tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Income Ranges vs. Health")
+
+table_healthcleaned %>% autofit() %>% fit_to_width(6.5)
 ```
-
-
 
 \newpage
 
-
-
 ```{r}
 #| label: fig-healthsatfin
-#| fig-cap: something2
+#| fig-cap: Relation between married respondents’ opinion on their marriage and financial satisfaction. As respondents claim that they are pretty well financially satisfied, their perceived health is also viewed with fewer poor responses, as well as a higher proportion of respondents claiming that their health status is either good, fair, and excellent.
 #| echo: false
 ggplot( 
   healthcleaned, aes(
-    x = satfin, fill = health)) + 
+    x = satfin, fill = factor(health, levels = c("Excellent", "Good", "Fair", "Poor")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -317,19 +332,17 @@ ggplot(
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
-
+According to the @fig-healthsatfin all three of the financial satisfaction groups have a proportional good health. However, those who are not satisfied at all have the lowest number of excellent health, those who are more or less satisfied contain the second highest amount of excellent health and those who are pretty well satisfied have the highest amount of excellent health. Additionally, poor health is seen to be decreasing as satisfaction increases, with it being almost not present in the pretty well satisfied group.
 
 \newpage
 
-
-
 ```{r}
 #| label: fig-healthincome
-#| fig-cap: something2
+#| fig-cap: Relation between health and family income of respondents. With an increase of income the claim of excellent health increases. In the ranges of $40,000 and below, claims that respondents exhibit poor health is more apparent. Conversely, those respondents in the $90,000 range and above claim they have excellent health.
 #| echo: false
 ggplot( 
   healthcleaned, aes(
-    x = new_income_range, fill = health)) + 
+    x = new_income_range, fill = factor(health, levels = c("Excellent", "Good", "Fair", "Poor")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -341,19 +354,19 @@ ggplot(
        fill = "Health")
 ```
 
-
+From observing @fig-healthincome as income increases so does the number of excellent health responses. The three income ranges that fit into the category of below \$40,000 all have a relatively low amount of excellent health responses, and a moderate amount of good and fair health. However, from the income ranges that include \$40,000 and more, the excellent health response is much larger, meanwhile good health occupies the majority of responses. Additionally, as income increases the poor health responses are also seen to slightly decrease.
 
 \newpage
 
-
-
 ```{r}
 #| label: table-finaltsatfin
-#| fig-cap: something2
+#| tbl-cap: Financial Satisfaction vs. Changes in Finances
 #| echo: false
 #| message: false
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+table_altsat<- finaltercleaned %>% 
+  tbl_cross(row = finalter, col = satfin, label = list(satfin ~ "Financial Satisfaction", finalter ~ "Changes in Wealth"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Changes in Finances")
+
+table_altsat %>% autofit() %>% fit_to_width(6.5)
 ```
 
 
@@ -361,23 +374,20 @@ finaltercleaned %>%
 
 ```{r}
 #| label: table-finaltincome
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Changes in Finances
 #| echo: false
 #| message: false
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+table_altinc<- finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")%>% as_flex_table() %>% set_caption(caption = "Income Ranges vs. Changes in Finances")
+
+table_altinc %>% autofit() %>% fit_to_width(6.5)
 ```
-
-
 
 \newpage
 
-
-
-
 ```{r}
 #| label: fig-finaltsatfin
-#| fig-cap: something2
+#| fig-cap: Relation between wealth changes and financial satisfaction of respondents. As their opinion on their changes in wealth are more positive, the more likely the respondents claim to be financially satisfied. Conversely, those that feel they are not financially satisfied claim that their changes in health have been generally worse in recent times.
 #| echo: false
 ggplot( 
   finaltercleaned, aes(
@@ -394,15 +404,12 @@ ggplot(
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
-
-
+While looking at the @fig-finaltsatfin, we have observed respondents that are pretty well satisfied with their financial situation that claim that their changes in wealth have gotten better, and almost none that are satisfied claim that their wealth has gotten worse. Additionally, more than half of those not satisfied with their financial situation claim that their financial situations have gotten worse over time, and only less than a minority are not satisfied at all as their changes in wealth have gotten better. The majority of the respondents that claim that they are more or less satisfied with their finances claim that their changes in wealth have either gotten better or stayed the same, and only a minority believes that they have gotten worse. Ultimately those that have either experienced a better or the same change in wealth are more likely to be either more or less satisfied or pretty well satisfied. Meanwhile, whore who have experienced a worse change of wealth have become less satisfied.\
 \newpage
-
-
 
 ```{r}
 #| label: fig-finaltincome
-#| fig-cap: something2
+#| fig-cap: Relation between wealth changes and family income of respondents. As income increases so does the belief that the financial situation has gotten better. Additionally those making $40,000 or less mostly believe their financial wealth has remained the same or gotten worse. 
 #| echo: false
 ggplot( 
   finaltercleaned, aes(
@@ -418,16 +425,51 @@ ggplot(
        fill = "Changes in Wealth")
 ```
 
+According to @fig-finatincome, the majority of respondents who claim that their changes in wealth have gotten better, fall into the \$40,000 to \$89,999 as well as the \$90,000 to \$170,000 income ranges. Additionally, a good portion of the respondents in the following two income ranges, claim that their wealth has remained the same, and only a minority believes that their wealth has gotten worse. On the other end of the graph, the income groups ranging from \$0 to \$9,999, \$10,000 to \$19,999 and \$20,000 to \$39,000 are all almost fairly equally split between believing that their wealth changes are either better, the same, or worse.
 
 
 # 4 Discussion {sec-discussion}
 
+## 4.1 Income Ranges and Financial Satisfaction
 
+Our initial decision to investigate income ranges with financial satisfaction is an attempt to quantify financial well being. In both the table and graph, we are able to identify what ranges of income do financially satisfied individuals identify with. Specifically, we can see the overall trend that those that are well/more or less satisfied fall under higher income ranges while those who are not fall under lower income ranges.
 
-## 4.1 Limitations {sec-limitations}
+One major limitation of this and our results is the unfortunate decision to segregate incomes ranges by such large margins. The decision to represent income groups below the American Poverty Line with multiple bars while representing wealthier groups with only 2 makes it difficult to determine at what point does strong financial backgrounds start to improve well being. Nevertheless, this specific decision also allows us to interpret the degrees of financial hardship that can impact health and happiness.
 
+## 4.2 Happiness, Health, and Changes in Wealth
 
+As demonstrated by our graphical representations, respondents who rated themselves higher in financial satisfaction and earned more income often rated themselves higher in happiness, health, and marriage quality. This reinforces the literature that we have read before, as both happiness and health are to some extent influenced by these variables. As demonstrated in the tables for health, respondents who are very satisfied with their finances or earn more than 90 000 proportionately overrepresent those who possess an excellent quality of health. Similarly, individuals who are financially satisfied overrepresent the proportion of those who are considered very happy.
+
+One aspect we did not take into account is age. We believed that especially for financial satisfaction, age can be an incredibly important factor as older individuals may feel financially satisfied earning less income from many years of growing their individual assets. This means the impact and financial satisfaction can have on happiness and health can be skewed by the pre-existing wealth of respondents.
+
+The relationship between financial satisfaction and changes in income is very interesting. While changes in wealth and income indicated an even proportion of individuals that had incomes that improved, stayed the same, or gotten better, respondents that experienced worse changes in wealth over-represent those who are not satisfied with their financial situations. This bias is interesting, as it demonstrates the sentiment-based nature of the variable of financial satisfaction. In this regard, a more accurate survey to probe financial well-being should be targeted towards one's financial ability to make ends meet.
+
+## 4.3 Survey Biases
+
+As mentioned earlier in the paper, the GSS randomly selects participants by randomly choosing households across the United States. This random sampling is further randomized by the quasi-random last birthday sampling method, where each household provides one respondent who most recently just had their birthday.
+
+While these are excellent random sampling practices, the GSS website also writes that the way this data should be interpreted is that each respondent is representative of 90 000 other individuals. In this regard, survey bias is still an extremely strong deterrent against the data being truly representative of the whole United States population. As written earlier in section data bias, consent requires that those who participate in the GSS possess the necessary free time to perform a 90 minute long survey.
+
+This can impact the quality of this survey in multiple ways. Especially for one concerned with financial well being, those struggling to make ends meet may feel less incentivized to take this survey, thereby limiting their representation. This is possibly evident in the income distribution of respondents, as there is an overrepresentation of those in the middling income ranges between 40 000 to 170 000 over while very little beneath.
+
+## 4.4 Conclusion
+
+Based on the discussion, analysis, and limitations of the data, we found that the GSS provides excellent insight in representing the relationship between finances and overall well being. However, the sentimentally-based nature of some questions and difficulty to represent financial well being makes it difficult to answer our original question. Hence, in the appendix, we have composed a survey that we believe can compose a data-set capable of answering our question. We included questions that specify financial well being by specifying financial comfort and ability to hold down emergency payments. Furthermore, other factors such as stress, hope, and other feelings are included to better represent the psychological factors of overall well being.
 
 # 5 Appendix {sec-appendix}
 
+## 5.1 Survey Link
 
+https://docs.google.com/forms/d/e/1FAIpQLSc9RScig9mAIUceeQA5w4LVJeSN8PfxJNavqAVnnWPrTHeejg/viewform
+
+## 5.2 Survey Questions
+
+![](images/paste-C08F7830.png)
+
+![](images/paste-F617C5EE.png)
+
+![](images/paste-314E528F.png)
+
+![](images/paste-DF7947C0.png)
+
+![![](images/paste-9EB2CCCB.png)](images/paste-0B2CB8F3.png)
