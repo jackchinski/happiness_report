@@ -1,5 +1,5 @@
 ---
-title: "Finances and Individual Well Being"
+title: "An Analysis of the positive effects between Finances and General Well Being."
 author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
 thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
 date: "`r Sys.time()`"
