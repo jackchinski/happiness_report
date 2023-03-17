@@ -36,7 +36,6 @@ The advent of 2023 is one marked with economic hardship and depression. After th
 
 To first get a better grasp of this investigation, we conducted a small literature review on the relationships between finances and well being in the United States. A common well known relationship between well being and finances is the positive correlation between Life Satisfaction and Economic well being [@helliwell2012world]. Furthermore, there are other economic theories that also attempt to interrogate the relationship between happiness and economic well being such as the Easterlin Paradox [@easterlin1974does]. In this regard, the positive correlation between finances and happiness is well understood. However, looking deeper into the literature, we can also identify how the deprivation of economic well being can also negatively impact an individual's quality of life. Specifically, research shows that economic hardship can impact marital quality and cause instability. This is due to an increase in occupational and financial stress that generate frustration, stress, anger and depression. [@conger1990linking] Furthermore, economic hardships can also inflict long-term consequences on children psychological well being in adulthood. [@sobolewski2005economic]. Finally, economic hardships play a major role in increasing depression levels, as depression can emerge as a byproduct of low income, education, being young, and having young children. [@ross1985hardship] Based on our brief literature review and the current economic climate of 2023, we were inspired to engage with the GSS 2021 survey data to answer questions about the impact of financial satisfaction with overall well being.
 
-# 2 Data
 
 This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
@@ -109,6 +108,9 @@ table_satfinincome %>% autofit() %>% fit_to_width(6.5)
 
 ```
 
+
+
+
 ```{r}
 #| label: fig-satfincome
 #| fig-cap: Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
@@ -154,7 +156,11 @@ table_happyandincomes <- happycleaned %>%
 table_happyandincomes %>% autofit() %>% fit_to_width(6.5)
 ```
 
+
+
 \newpage
+
+
 
 ```{r}
 #| label: fig-satfinhappy
@@ -180,6 +186,8 @@ ggplot(
 The comparison between the respondents' happiness and financial satisfaction are visualized on @fig-satfinhappy. We observe that the number of respondents that claimed that they are generally happy increased as the financial satisfaction of these respondents increased as well. A higher proportion of respondents that claim they are not too happy also respond that they are not financially satisfied, and so there seems to be a pattern of general happiness being linked to financial satisfaction.
 
 \newpage
+
+
 
 ```{r}
 #| label: fig-happyincome
@@ -216,6 +224,8 @@ table_hapmarsatfin<- hapmarcleaned %>%
 table_hapmarsatfin %>% autofit() %>% fit_to_width(6.5)
 
 ```
+
+
 
 ```{r}
 #| label: table-hapmarincome
@@ -287,6 +297,9 @@ table_healthsatfin <- healthcleaned %>%
 table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
 ```
 
+
+
+
 ```{r}
 #| label: table-healthincome
 #| tbl-cap: Income Ranges vs. Health
@@ -356,6 +369,9 @@ table_altsat<- finaltercleaned %>%
 table_altsat %>% autofit() %>% fit_to_width(6.5)
 ```
 
+
+
+
 ```{r}
 #| label: table-finaltincome
 #| tbl-cap: Income Ranges vs. Changes in Finances
@@ -411,7 +427,8 @@ ggplot(
 
 According to @fig-finatincome, the majority of respondents who claim that their changes in wealth have gotten better, fall into the \$40,000 to \$89,999 as well as the \$90,000 to \$170,000 income ranges. Additionally, a good portion of the respondents in the following two income ranges, claim that their wealth has remained the same, and only a minority believes that their wealth has gotten worse. On the other end of the graph, the income groups ranging from \$0 to \$9,999, \$10,000 to \$19,999 and \$20,000 to \$39,000 are all almost fairly equally split between believing that their wealth changes are either better, the same, or worse.
 
-# 4 Discussion
+
+# 4 Discussion {sec-discussion}
 
 ## 4.1 Income Ranges and Financial Satisfaction
 
@@ -439,7 +456,7 @@ This can impact the quality of this survey in multiple ways. Especially for one 
 
 Based on the discussion, analysis, and limitations of the data, we found that the GSS provides excellent insight in representing the relationship between finances and overall well being. However, the sentimentally-based nature of some questions and difficulty to represent financial well being makes it difficult to answer our original question. Hence, in the appendix, we have composed a survey that we believe can compose a data-set capable of answering our question. We included questions that specify financial well being by specifying financial comfort and ability to hold down emergency payments. Furthermore, other factors such as stress, hope, and other feelings are included to better represent the psychological factors of overall well being.
 
-# 5 Appendix
+# 5 Appendix {sec-appendix}
 
 ## 5.1 Survey Link
 
