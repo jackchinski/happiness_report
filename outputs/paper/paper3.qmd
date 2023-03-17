@@ -131,7 +131,7 @@ ggplot(
 
 ```
 
-According to [graph0], when comparing the financial satisfaction of respondents with their income ranges, the number of respondents from the $0 - $89,999 ranges that claim they are not satisfied at all are relatively similar. However, when examining the total number of respondents within their respective income ranges, it can be seen that it increases as the income range increases. This indicates that the proportion of respondents that do not feel satisfied at all decreases as the income range increases. Conversely, more respondents claim that they are either more or less satisfied or pretty well satisfied as the income range increases, and are heavily skewed to those that have higher income ranges. 
+According to @fig-satfincome, when comparing the financial satisfaction of respondents with their income ranges, the number of respondents from the $0 - $89,999 ranges that claim they are not satisfied at all are relatively similar. However, when examining the total number of respondents within their respective income ranges, it can be seen that it increases as the income range increases. This indicates that the proportion of respondents that do not feel satisfied at all decreases as the income range increases. Conversely, more respondents claim that they are either more or less satisfied or pretty well satisfied as the income range increases, and are heavily skewed to those that have higher income ranges. 
 
 \newpage
 
@@ -180,7 +180,7 @@ ggplot(
 
 ```
 
-The comparison between the respondents’ happiness and financial satisfaction are visualized on [graph]. We observe that the number of respondents that claimed that they are generally happy increased as the financial satisfaction of these respondents increased as well. A higher proportion of respondents that claim they are not too happy also respond that they are not financially satisfied, and so there seems to be a pattern of general happiness being linked to financial satisfaction.
+The comparison between the respondents’ happiness and financial satisfaction are visualized on @fig-satfinhappy. We observe that the number of respondents that claimed that they are generally happy increased as the financial satisfaction of these respondents increased as well. A higher proportion of respondents that claim they are not too happy also respond that they are not financially satisfied, and so there seems to be a pattern of general happiness being linked to financial satisfaction.
 
 
 \newpage
@@ -205,7 +205,7 @@ ggplot(
 
 ```
 
-The observation of respondents that describe their level of happiness compared to their income is demonstrated on [graph]. Each income group shows relatively similar proportions of respondents that claim that they are pretty happy, with fewer proportions claiming they are not too happy or very happy. However, as the income range increases, more respondents claim that they are pretty happy or very happy. There is an interesting observation with those families with a combined income of $40,000 to $89,999. This income group seems to have a slightly disproportionate amount of respondents saying they are not too happy when comparing with the proportions of other income groups.
+The observation of respondents that describe their level of happiness compared to their income is demonstrated on @fig-happyincome. Each income group shows relatively similar proportions of respondents that claim that they are pretty happy, with fewer proportions claiming they are not too happy or very happy. However, as the income range increases, more respondents claim that they are pretty happy or very happy. There is an interesting observation with those families with a combined income of $40,000 to $89,999. This income group seems to have a slightly disproportionate amount of respondents saying they are not too happy when comparing with the proportions of other income groups.
 
 \newpage
 
@@ -253,7 +253,8 @@ ggplot(
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
-For those that are married, a visualization of their financial satisfaction compared to their view of happiness in their marriage is seen in [graph]. It can be seen that most respondents that are more or less satisfied financially or pretty well satisfied generally are either pretty happy or very happy with their marriage. This also applies to respondents that claim they are not satisfied at all financially, however there is a lower frequency of respondents in this category. As a result, there is a higher proportion of respondents that claim that they are not too happy in their marriage in comparison to those respondents that claim they are more or less satisfied or pretty satisfied financially.
+For those that are married, a visualization of their financial satisfaction compared to their view of happiness in their marriage is seen in @fig-hapmarsatfin. It can be seen that most respondents that are more or less satisfied financially or pretty well satisfied generally are either pretty happy or very happy with their marriage. This also applies to respondents that claim they are not satisfied at all financially, however there is a lower frequency of respondents in this category. As a result, there is a higher proportion of respondents that claim that they are not too happy in their marriage in comparison to those respondents that claim they are more or less satisfied or pretty satisfied financially.
+
 \newpage
 
 ```{r}
@@ -275,7 +276,7 @@ ggplot(
        fill = "Happiness of Marriage")
 ```
 
-From observing [Graph 2.2] the amount of respondents that are not too happy with their marriage are in the income range of 40,000 to 90,000. The number of not too happy responses is seen to increase as does income, however it falls slightly in the income range of 90,000 to 170,000 from the previous group. Additionally, very happy marriages are seen to be steadily increasing along with the income. 
+From observing @fig-hapmarincome, the amount of respondents that are not too happy with their marriage are in the income range of 40,000 to 90,000. The number of not too happy responses is seen to increase as does income, however it falls slightly in the income range of $90,000 to $170,000 from the previous group. Additionally, very happy marriages are seen to be steadily increasing along with the income. 
 
 \newpage
 
@@ -306,7 +307,7 @@ table_healthcleaned %>% autofit() %>% fit_to_width(6.5)
 
 ```{r}
 #| label: fig-healthsatfin
-#| fig-cap: Relation between married respondents’ opinion on their marriage and financial satisfaction. 
+#| fig-cap: Relation between married respondents’ opinion on their marriage and financial satisfaction. As respondents claim that they are pretty well financially satisfied, their perceived health is also viewed with fewer poor responses, as well as a higher proportion of respondents claiming that their health status is either good, fair, and excellent.
 #| echo: false
 ggplot( 
   healthcleaned, aes(
@@ -323,13 +324,13 @@ ggplot(
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
 
-According to the [Graph 3.1] all three of the financial satisfaction groups have a proportional good health. However, those who are not satisfied at all have the lowest number of excellent health, those who are more or less satisfied contain the second highest amount of excellent health and those who are pretty well satisfied have the highest amount of excellent health. Additionally, poor health is seen to be decreasing as satisfaction increases, with it being almost not present in the pretty well satisfied group.
+According to the @fig-healthsatfin all three of the financial satisfaction groups have a proportional good health. However, those who are not satisfied at all have the lowest number of excellent health, those who are more or less satisfied contain the second highest amount of excellent health and those who are pretty well satisfied have the highest amount of excellent health. Additionally, poor health is seen to be decreasing as satisfaction increases, with it being almost not present in the pretty well satisfied group. 
 
 \newpage
 
 ```{r}
 #| label: fig-healthincome
-#| fig-cap: Relation between health and family income of respondents. With an increase of income the claim of excellent health increases. In the ranges of 40 000 and below poor health is more apparent. 
+#| fig-cap: Relation between health and family income of respondents. With an increase of income the claim of excellent health increases. In the ranges of $40,000 and below, claims that respondents exhibit poor health is more apparent. Conversely, those respondents in the $90,000 range and above claim they have excellent health.
 #| echo: false
 ggplot( 
   healthcleaned, aes(
@@ -344,7 +345,8 @@ ggplot(
        y = "Frequency",
        fill = "Health")
 ```
-From observing [graph 3.2] as income increases so does the number of excellent health responses. The three income ranges that fit into the category of below 40,00 all have a relatively low amount of excellent health responses, and a moderate amount of good and fair health. However, from the income ranges that include 40,000 and more, the excellent health response is much larger, meanwhile good health occupies the majority of responses. Additionally, as income increases the poor health responses is also seen to slightly decrease. 
+
+From observing @fig-healthincome as income increases so does the number of excellent health responses. The three income ranges that fit into the category of below $40,000 all have a relatively low amount of excellent health responses, and a moderate amount of good and fair health. However, from the income ranges that include $40,000 and more, the excellent health response is much larger, meanwhile good health occupies the majority of responses. Additionally, as income increases the poor health responses are also seen to slightly decrease. 
 
 \newpage
 
@@ -374,7 +376,7 @@ table_altinc %>% autofit() %>% fit_to_width(6.5)
 
 ```{r}
 #| label: fig-finaltsatfin
-#| fig-cap: Relation between wealth changes and financial satisfaction of respondents. As changes in wealth have gotten better the more likely the respondents are to be financially satisfied. 
+#| fig-cap: Relation between wealth changes and financial satisfaction of respondents. As their opinion on their changes in wealth are more positive, the more likely the respondents claim to be financially satisfied. Conversely, those that feel they are not financially satisfied claim that their changes in health have been generally worse in recent times.
 #| echo: false
 ggplot( 
   finaltercleaned, aes(
@@ -390,12 +392,13 @@ ggplot(
        fill = "Changes in Wealth")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
-While looking at the [graph 5.1],  we have observed respondents that are pretty well satisfied with their financial situation that claim that their changes in wealth have gotten better, and almost none that are satisfied claim that their wealth has gotten worse. Additionally, more than half of those not satisfied with their financial situation claim that their financial situations have gotten worse over time, and only less than a minority are not satisfied at all as their changes in wealth have gotten better. The majority of the respondents that claim that they are more or less satisfied with their finances claim that their changes in wealth have either gotten better or stayed the same, and only a minority believes that they have gotten worse. Ultimately those that have either experienced a better or the same change in wealth are more likely to be either more or less satisfied or pretty well satisfied. Meanwhile, whore who have experienced a worse change of wealth have become less satisfied. 
+
+While looking at the @fig-finaltsatfin, we have observed respondents that are pretty well satisfied with their financial situation that claim that their changes in wealth have gotten better, and almost none that are satisfied claim that their wealth has gotten worse. Additionally, more than half of those not satisfied with their financial situation claim that their financial situations have gotten worse over time, and only less than a minority are not satisfied at all as their changes in wealth have gotten better. The majority of the respondents that claim that they are more or less satisfied with their finances claim that their changes in wealth have either gotten better or stayed the same, and only a minority believes that they have gotten worse. Ultimately those that have either experienced a better or the same change in wealth are more likely to be either more or less satisfied or pretty well satisfied. Meanwhile, whore who have experienced a worse change of wealth have become less satisfied.  
 \newpage
 
 ```{r}
 #| label: fig-finaltincome
-#| fig-cap: Relation between wealth changes and family income of respondents. As income increases so does the belief that the financial situation has gotten better. Additionally those making 40 000 or less mostly believe their financial wealth has remained the same or gotten worse. 
+#| fig-cap: Relation between wealth changes and family income of respondents. As income increases so does the belief that the financial situation has gotten better. Additionally those making $40,000 or less mostly believe their financial wealth has remained the same or gotten worse. 
 #| echo: false
 ggplot( 
   finaltercleaned, aes(
@@ -410,22 +413,24 @@ ggplot(
        y = "Frequency",
        fill = "Changes in Wealth")
 ```
-According to [graph 4.2], the majority of respondents who claim that their changes in wealth have gotten better, fall into the 40,000 to 89,999 as well as the 90,000 to 170,000 income ranges. Additionally, a good portion of the respondents in the following two income ranges, claim that their wealth has remained the same, and only a minority believes that their wealth has gotten worse. On the other end of the graph, the income groups ranging from 0 to 9,999 , 10,000 to 19,999 and 20,000 to 39,000 are all almost fairly equally split between believing that their wealth changes are either better, the same, or worse.  
+
+According to @fig-finatincome, the majority of respondents who claim that their changes in wealth have gotten better, fall into the $40,000 to $89,999 as well as the $90,000 to $170,000 income ranges. Additionally, a good portion of the respondents in the following two income ranges, claim that their wealth has remained the same, and only a minority believes that their wealth has gotten worse. On the other end of the graph, the income groups ranging from $0 to $9,999, $10,000 to $19,999 and $20,000 to $39,000 are all almost fairly equally split between believing that their wealth changes are either better, the same, or worse.  
 
 # 4 Discussion
 
 ## 4.1 Income Ranges and Financial Satisfaction
 
-	Our initial decision to investigate income ranges with financial satisfaction is an attempt to quantify financial well being. In both the table and graph, we are able to identify what ranges of income do financially satisfied individuals identify with. Specifically, we can see the overall trend that those that are well/more or less satisfied fall under higher income ranges while those who are not fall under lower income ranges.
+Our initial decision to investigate income ranges with financial satisfaction is an attempt to quantify financial well being. In both the table and graph, we are able to identify what ranges of income do financially satisfied individuals identify with. Specifically, we can see the overall trend that those that are well/more or less satisfied fall under higher income ranges while those who are not fall under lower income ranges.
 	
-	One major limitation of this and our results is the unfortunate decision to segregate incomes ranges by such large margins. The decision to represent income groups below the American Poverty Line with multiple bars while representing wealthier groups with only 2 makes it difficult to determine at what point does strong financial backgrounds start to improve well being. Nevertheless, this specific decision also allows us to interpret the degrees of financial hardship that can impact health and happiness.
+One major limitation of this and our results is the unfortunate decision to segregate incomes ranges by such large margins. The decision to represent income groups below the American Poverty Line with multiple bars while representing wealthier groups with only 2 makes it difficult to determine at what point does strong financial backgrounds start to improve well being. Nevertheless, this specific decision also allows us to interpret the degrees of financial hardship that can impact health and happiness.
 	
 ## 4.2 Happiness, Health, and Changes in Wealth
 
-	As demonstrated by our graphical representations, respondents who rated themselves higher in financial satisfaction and earned more income often rated themselves higher in happiness, health, and marriage quality. This reinforces the literature that we have read before, as both happiness and health are to some extent influenced by these variables. As demonstrated in the tables for health, respondents who are very satisfied with their finances or earn more than 90 000 proportionately overrepresent those who possess an excellent quality of health. Similarly, individuals who are financially satisfied overrepresent the proportion of those who are considered very happy.
+As demonstrated by our graphical representations, respondents who rated themselves higher in financial satisfaction and earned more income often rated themselves higher in happiness, health, and marriage quality. This reinforces the literature that we have read before, as both happiness and health are to some extent influenced by these variables. As demonstrated in the tables for health, respondents who are very satisfied with their finances or earn more than 90 000 proportionately overrepresent those who possess an excellent quality of health. Similarly, individuals who are financially satisfied overrepresent the proportion of those who are considered very happy.
 	
-	One aspect we did not take into account is age. We believed that especially for financial satisfaction, age can be an incredibly important factor as older individuals may feel financially satisfied earning less income from many years of growing their individual assets. This means the impact and financial satisfaction can have on happiness and health can be skewed by the pre-existing wealth of respondents.
-	The relationship between financial satisfaction and changes in income is very interesting. While changes in wealth and income indicated an even proportion of individuals that had incomes that improved, stayed the same, or gotten better, respondents that experienced worse changes in wealth over-represent those who are not satisfied with their financial situations. This bias is interesting, as it demonstrates the sentiment-based nature of the variable of financial satisfaction. In this regard, a more accurate survey to probe financial well-being should be targeted towards one’s financial ability to make ends meet.
+One aspect we did not take into account is age. We believed that especially for financial satisfaction, age can be an incredibly important factor as older individuals may feel financially satisfied earning less income from many years of growing their individual assets. This means the impact and financial satisfaction can have on happiness and health can be skewed by the pre-existing wealth of respondents.
+
+The relationship between financial satisfaction and changes in income is very interesting. While changes in wealth and income indicated an even proportion of individuals that had incomes that improved, stayed the same, or gotten better, respondents that experienced worse changes in wealth over-represent those who are not satisfied with their financial situations. This bias is interesting, as it demonstrates the sentiment-based nature of the variable of financial satisfaction. In this regard, a more accurate survey to probe financial well-being should be targeted towards one’s financial ability to make ends meet.
 	
 ## 4.3 Survey Biases
 
@@ -437,6 +442,6 @@ This can impact the quality of this survey in multiple ways. Especially for one 
 
 ## 4.4 Conclusion
 
-	Based on the discussion, analysis, and limitations of the data, we found that the GSS provides excellent insight in representing the relationship between finances and overall well being. However, the sentimentally-based nature of some questions and difficulty to represent financial well being makes it difficult to answer our original question. Hence, in the appendix, we have composed a survey that we believe can compose a data-set capable of answering our question. We included questions that specify financial well being by specifying financial comfort and ability to hold down emergency payments. Furthermore, other factors such as stress, hope, and other feelings are included to better represent the psychological factors of overall well being. 
+Based on the discussion, analysis, and limitations of the data, we found that the GSS provides excellent insight in representing the relationship between finances and overall well being. However, the sentimentally-based nature of some questions and difficulty to represent financial well being makes it difficult to answer our original question. Hence, in the appendix, we have composed a survey that we believe can compose a data-set capable of answering our question. We included questions that specify financial well being by specifying financial comfort and ability to hold down emergency payments. Furthermore, other factors such as stress, hope, and other feelings are included to better represent the psychological factors of overall well being. 
 	
 # 5 Appendix
