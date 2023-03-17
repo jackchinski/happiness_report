@@ -58,4 +58,3 @@ simulated_clean$new_income_range <- ifelse(simulated_clean$random_income16s %in%
 
 #Quick display of table
 tibble(simulated_clean)
-
