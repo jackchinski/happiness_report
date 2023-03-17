@@ -30,46 +30,82 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 
 ```
 
-
-
 # 1 Introduction
-
-
+##Literature Review
 # 2 Data
-
+This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
 ## 2.1 Tools Used
 
-
-
 ## 2.2 Survey Methodology
 
+This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
+The sample for the 2021 survey consisted of adults aged 18 and older living in privately owned homes in the US. To select respondents, the "last birthday method" was used, which involves selecting the adult with the most recent birthday to when the mail was sent out. Prior to the pandemic, the selection process was more rigorous, with an interviewer physically present to assist respondents and make the selection after all adults had filled in an introductory form. For the 2021 survey, materials were mailed to participants with a web link invitation instead. The response rate was 17.4%, with 88.3% of respondents completing the survey via the web and 11.7% completing it via phone. A total of 4,032 surveys were completed between December 1, 2020, and May 3, 2021.
 
 ## 2.3 Survey Biases and Ethics
+The lack of an interviewer implied the possibility of non-response, as participants are less socially pressured to fill out responses they may or may not feel inclined to report. To address this, an introductory form was administered to all participating adults which somewhat ensured that those taking the survey are dedicated enough to offer adequate responses.This was a trade off in the sampling approach that must be noted compared to previous years. Therefore, weights were carefully placed to account for factors such as population totals, density of surveyed addresses nearby, and non-response. The weighting system must account for new data and be similar to previous years to avoid skewing the results. However, despite all of these measures and countermeasures, the greatest challenge against the GSS (in all years) is the threat of survey bias, as all the data collected for all surveys are from participants willing to fill out a 90 minute survey. This could mean that the only people represented in the GSS survey are those with the free time and willingness to offer survey responses to NORC, potentially misrepresenting the overall population.
 
+Furthermore, the GSS 2021 survey has made changes to the survey response options due to the shift from in-person interviews to web and phone-based interviews. The survey originally contained "volunteered responses" that were not displayed to respondents but used by interviewers. However, interviewers are unable to add volunteer responses in this year's survey because of the lack of interaction on web and phone-based interviews. The GSS adopted a new structure for volunteered responses on the web mode by creating two different versions of forms, one with and one without volunteered responses as an option. Any changes in public opinion seen in the 2021 GSS data could be due to actual changes in public opinion or the newly adopted methodology and should be closely monitored and considered in analysis.
 
+###Nonresponse Bias
+Changes to "Don't Know" and "No Answer" responses have also been made in the 2021 GSS survey. Traditionally, these options were not shown to respondents, and it was only recorded if the respondent did not wish to answer. On the web mode, however, responders can only skip the question, and the option of "No Answer" was removed. The option of "Don't Know" was also removed from attitudinal questions and only displayed in light-gray as an option for factual questions. Implementing these changes exposes the survey to more "No Answer" and "Don't Know" responses, which could lead to a loss of information. However, the GSS codebook has stated that there was no significant increase in respondents choosing these options, but they encourage further investigation as this finding is still preliminary.
+
+##Survey bias
+The data that was represented in this analysis has many considerations to take into account. First, it must be considered that these results are highly generalized, as one respondent in the GSS survey corresponds to 90,000 people. This is the result of how the data was collected, and as such the data visualizations are only to be seen in a general context. In addition, we also have to consider that opinions of what people are thinking are not substantial enough to confidently argue in absolutes in regards to the correlation between well-being and the variables that were analyzed. This also applies to the fact that respondents can still lie on the survey as there is no way to verify if the respondents were answering truthfully over a survey. It must also be considered that volunteer bias is present with this survey, as those respondents that have time and access to contribute to the survey would be more likely to take part. As a result, this data may misrepresent the population as those that have the free time to offer these opinions may be more well off. While it's great to include anyone in the survey, the assumption can be made that more respondents would likely consist of individuals that are well off.
+
+##Sentiment Conceptualization
+Furthermore, the nature of sentiment-based questions in the GSS can be difficult to conceptualize. In GSS Methodological Report No. 127, Tom W. Smith investigates the nature of vague questions such as SATJOB (Job Satisfaction) and how it is a subjective concept that varies in definition depending on the respondent. Specifically, he quotes another paper that writes "there probably are several types of feelings that people have which can be satisfaction or which influence their feelings of satisfaction about their job."(Wanous and Lawler, 1972) In other words, depending on the categories, feelings, and values respondents assign to their jobs, the satisfaction reported can be wildly different from one.
+
+Similarly, we wish to highlight this limitation in the GSS, as one of our most important variables SATFIN is also a subjective sentiment-based question that we will use to gauge the financial comfort of the respondents. To address this limitation, however, we have also decided to include income into our analysis in order to somewhat quantify the varying degrees of financial satisfaction before we set out to measure its impact on various aspects of well being.
+
+Another important vulnerability to identify is the outdatedness of certain variables. Specifically, variables such as income(respondent family income) and rincome (respondent income) are not scaled for inflation. The 12 income ranges used to represent respondents do not exceed 25 000. However, the GSS does acknowledge this, and has implemented different income ranges to accommodate for inflation. Specifically, we will be using income16 (respondent family income in 2016 and beyond) to represent the ranges of income of our respondents. Furthermore, we will be condensing these ranges during data cleaning to better visually interpret the data.
 
 ## 2.4 Data Collection
 
+In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R \[\@rcoreteam2022\]. The tidyverse package \[\@wickham2019\] was used to load in the dplyr package to filter variables \[\@wickham2023\], and ggplot2 to visualize the data in graphs \[\@wickham2016\]. Furthermore, we also employed packages gtsummary and flextable to create table visualizations and summaries of our findings 
+
+The data extraction process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file, in our Github repository.
+
+The data that was chosen to be analyzed from the GSS were variables that involved subjective opinions about the respondent's well-being in tandem with socio-economic variables that act as potential contributors to their state. These specific variables are:
+
+-   HAPPY: Subjective opinion of the respondent's happiness
+
+<!-- -->
+
+-   HAPMAR: Subjective opinion of the respondents' current happiness in their marriage (if they are married)
+
+-   HEALTH: Subjective opinion of the respondent's current health status
+
+-   SATFIN: Financial satisfaction of the respondent
+
+-   INCOME16: Total family income of the respondent, which includes: total income includes interest or dividends, rent, social security, other pensions, alimony or child support, unemployment compensation, public aid (welfare), armed forces or veteran's allotment. 
+
+-   FINALTER: Subjective opinion of the respondent's financial situation in the past few years since 2021.
+
+Before we chose any of the other variables, we decided to first pick out INCOME16 and SATFIN. The reason for this is because we want to be able to gauge what range of income respondents would identify as a range where they would be financially satisfied. The reason for this is to quantify financial satisfaction on the basis of income, as this allows us to translate the sentiment of satisfaction into a tangible number. Similarly, happiness in a marriage context with HAPMAR was also chosen to be analyzed as social relationships play a large role in a person's sense of belonging, and so we wanted to assess how living with a partner can affect their well-being in a measurable way. HEALTH is used to gauge how people feel about their general health condition, and can predict to a certain extent their well-being. These variables will be further explored in our data analysis (or can be demonstrated right now in a graph). Overall, our attention was turned to three specific factors: finances, relationships, and health. These variables were chosen to be analyzed as they represent core dimensions that are interconnected with well-being and how humans experience and feel about life \[\@rath2010\]. Discussing these factors as they affect your well-being turns them into abstract concepts for people to visualize and describe to others, and so a subjective viewpoint was taken from respondents to gain an idea of how they affect them in a general context.
+
+We also currently have variable "- LIFE: "Subjective opinion of respondent's view on life as dull, routine, or exciting"  included in the data extract. We ended up not working with this variable as it only included samples from two out of the 3 ballots employed in 2021. 
 
 
 ## 2.5 Data Cleaning
 
-
+In order to clean the data, we started by selecting all of the applicable columns to make two separate data frames. The first one consisted of SATFIN, which is financial satisfaction, and the INCOME16 column which is a family's yearly income. While trying to visualize the data, we decided to make more general income ranges, instead of the twenty six that were provided in the original INCOME16 column. We settled on five income ranges (which we will later discuss in discussions). We did so by creating an ifelse statement that would add an additional column "new_income_range" with our own set income ranges depending on the INCOME16 value. We then removed all invalid entries that consisted of either "incomplete", "did not answer", or "did not complete online" values. Similarly, we made another master_clean dataset, in which we selected the columns HAPPY, HAMPAR, HEALTH, FINALTER, SAFTIN, INCOME16, and GROUPED_INC. We then followed the same methodology of adding our own column for our custom income range, and removing all invalid entries from all of the invalid rows.
 
 # 3 Results
 
 \newpage
+
 ```{r}
 #| label: table-satfinincome
-#| tbl-cap: Table Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
+#| tbl-cap: Financial Satisfaction vs. Income Ranges
 #| echo: false
 #| message: false
 table_satfinincome <- mastercleaned %>% 
-  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Finances"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Income Ranges")
+  tbl_cross(row = satfin, col = new_income_range, label = list(new_income_range ~ "Income Ranges", satfin ~ "Financial Satisfaction"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Income Ranges")
 
-table_satfinincome %>%
+table_satfinincome %>% autofit() %>% fit_to_width(6.5)
+
 
 ```
 
@@ -79,7 +115,7 @@ table_satfinincome %>%
 #| echo: false
 ggplot( 
   mastercleaned, aes(
-    x = new_income_range, fill = satfin)) + 
+    x = new_income_range, fill = factor(satfin, levels = c("Pretty well satisfied", "More or less satisfied", "Not satisfied at all")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -93,21 +129,27 @@ ggplot(
 ```
 
 \newpage
+
 ```{r}
 #| label: table-happyandsatfin
 #| fig-cap: something
 #| echo: false
 #| message: false
-happycleaned %>% 
-  tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column")
+table_happinesssatfin <- happycleaned %>% 
+  tbl_cross(row = happy, col = satfin, label = list(satfin ~ "Financial Satisfactions", happy ~ "Happiness"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness")
+
+table_happinesssatfin %>% autofit() %>% fit_to_width(6.5)
 ```
+
 ```{r}
 #| label: table-happyandincomes
 #| fig-cap: something2
 #| echo: false
 #| message: false
-happycleaned %>% 
-  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column")
+table_happyandincomes <- happycleaned %>% 
+  tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Income Ranges vs. Happiness")
+
+table_happyandincomes %>% autofit() %>% fit_to_width(6.5)
 ```
 
 \newpage
@@ -119,7 +161,7 @@ happycleaned %>%
 
 ggplot(
   happycleaned, aes(
-    x = satfin, fill = happy)) + 
+    x = satfin, fill = factor(happy, levels = c("Very happy", "Pretty happy", "Not too happy")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -132,6 +174,7 @@ ggplot(
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 
 ```
+
 \newpage
 
 ```{r}
@@ -141,7 +184,7 @@ ggplot(
 
 ggplot( 
   happycleaned, aes(
-    x = new_income_range, fill = happy)) + 
+    x = new_income_range, fill = factor(happy, levels = c("Very happy", "Pretty happy", "Not too happy")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -153,32 +196,41 @@ ggplot(
        fill = "Happiness Response")
 
 ```
+
 \newpage
+
 ```{r}
-#| label: table-hapmarsatfin
-#| fig-cap: something2
+#| label: table-satfinincome
+#| tbl-cap: Financial Satisfaction vs. Happiness of Marriage
 #| echo: false
 #| message: false
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
+table_hapmarsatfin<- hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness of Marriage")
+
+table_hapmarsatfin %>% autofit() %>% fit_to_width(6.5)
+
 ```
 
 ```{r}
 #| label: table-hapmarincome
-#| fig-cap: something2
+#| table-cap: Income Range vs. Happiness of Marriage
 #| echo: false
 #| message: false
-hapmarcleaned %>% 
-  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
+table_hapmarincome <- hapmarcleaned %>% 
+  tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column") %>%  as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Happiness of Marriage")
+
+table_hapmarincome %>% autofit() %>% fit_to_width(6.5)
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-hapmarsatfin
 #| fig-cap: something2
 #| echo: false
 ggplot( 
   hapmarcleaned, aes(
-    x = satfin, fill = hapmar)) + 
+    x = satfin, fill = factor(hapmar, levels = c("VERY HAPPY", "PRETTY HAPPY", "NOT TOO HAPPY")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -190,7 +242,9 @@ ggplot(
        fill = "Happiness of Marriage")+
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-hapmarincome
 #| fig-cap: ???
@@ -198,7 +252,7 @@ ggplot(
 
 ggplot( 
   hapmarcleaned, aes(
-    x = new_income_range, fill = hapmar)) + 
+    x = new_income_range, fill = factor(hapmar, levels = c("VERY HAPPY", "PRETTY HAPPY", "NOT TOO HAPPY")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -209,14 +263,18 @@ ggplot(
        y = "Frequency",
        fill = "Happiness of Marriage")
 ```
+
 \newpage
+
 ```{r}
 #| label: table-healthsatfin
 #| fig-cap: something2
 #| echo: false
 #| message: false
-healthcleaned %>% 
-  tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column")
+table_healthsatfin <- healthcleaned %>% 
+  tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Health")
+
+table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
 ```
 
 ```{r}
@@ -225,16 +283,20 @@ healthcleaned %>%
 #| echo: false
 #| message: false
 healthcleaned %>% 
-  tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column")
+  tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Income Ranges vs. Health")
+
+table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-healthsatfin
 #| fig-cap: something2
 #| echo: false
 ggplot( 
   healthcleaned, aes(
-    x = satfin, fill = health)) + 
+    x = satfin, fill = factor(health, levels = c("Excellent", "Good", "Fair", "Poor")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -246,14 +308,16 @@ ggplot(
        fill = "Health")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-healthincome
 #| fig-cap: something2
 #| echo: false
 ggplot( 
   healthcleaned, aes(
-    x = new_income_range, fill = health)) + 
+    x = new_income_range, fill = factor(health, levels = c("Excellent", "Good", "Fair", "Poor")))) + 
   geom_bar(
     position = "stack") + #Creating a stacked bar plot
   theme_minimal() + #Using a simple theme
@@ -264,14 +328,16 @@ ggplot(
        y = "Frequency",
        fill = "Health")
 ```
+
 \newpage
+
 ```{r}
 #| label: table-finaltsatfin
 #| fig-cap: something2
 #| echo: false
 #| message: false
 finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+  tbl_cross(row = finalter, col = satfin, label = list(satfin ~ "Financial Satisfaction", finalter ~ "Changes in Wealth"), percent = "column")
 ```
 
 ```{r}
@@ -282,7 +348,9 @@ finaltercleaned %>%
 finaltercleaned %>% 
   tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-finaltsatfin
 #| fig-cap: something2
@@ -301,7 +369,9 @@ ggplot(
        fill = "Changes in Wealth")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
 \newpage
+
 ```{r}
 #| label: fig-finaltincome
 #| fig-cap: something2
@@ -320,15 +390,8 @@ ggplot(
        fill = "Changes in Wealth")
 ```
 
-
 # 4 Discussion
-
-
 
 ## 4.1 Limitations
 
-
-
 # 5 Appendix
-
-
