@@ -4,7 +4,7 @@ author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
 thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
 date: "`r Sys.time()`"
 date-format: "D MMMM YYYY"
-abstract: "DON'T FORGET THIS"
+abstract: "This paper discusses data taken from the 2021 US General Social Survey to analyze the relationship between financial well being and overall individual well being. "
 format: pdf
 bibliography: references.bib
 ---
@@ -31,19 +31,24 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 ```
 
 # 1 Introduction
-##Literature Review
+
+The advent of 2023 is one marked with economic hardship and depression. After the pandemic, markets scrambled as inflation rose to an all time high and signs of economic downturn began creeping through in the form of layoffs and reduced spending.
+Because of this, we wanted to investigate the effects that finances (economic statuses and hardships) have on well being. For our investigation, we wished to interrogate elements that we believe are representative of well being in relation to financial wellbeing.  Specifically, we chose to investigate factors such as happiness, health, happiness of marriage, and life excitement. We were able to identify interesting correlations between quality of health, happiness, and happiness of marriage with financial satisfaction and income.
+
+To first get a better grasp of this investigation, we conducted a small literature review on the relationships between finances and well being in the United States. A common well known relationship between well being and finances is the positive correlation between Life Satisfaction and Economic well being \[\@helliwell2012world\]. Furthermore, there are other economic theories that also attempt to interrogate the relationship between happiness and economic well being such as the Easterlin Paradox \[\@easterlin1974does\].
+In this regard, the positive correlation between finances and happiness is well understood. However, looking deeper into the literature, we can also identify how the deprivation of economic well being can also negatively impact an individual’s quality of life. Specifically, research shows that economic hardship can impact marital quality and cause instability. This is due to an increase in occupational and financial stress that generate frustration, stress, anger and depression. \[\@conger1990linking\] Furthermore, economic hardships can also inflict long-term consequences on children’s psychological well being in adulthood. \[\@sobolewski2005economic\]. Finally, economic hardships play a major role in increasing depression levels, as depression can emerge as a byproduct of low income, education, being young, and having young children. \[\@ross1985hardship\]
+	Based on our brief literature review and the current economic climate of 2023, we were inspired to engage with the GSS 2021 survey data to answer questions about the impact of financial satisfaction with overall well being.
+
 # 2 Data
 This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
-## 2.1 Tools Used
-
-## 2.2 Survey Methodology
+## 2.1 Survey Methodology
 
 This report focuses on the General Social Survey (GSS), which is a survey that observes and monitors public opinion and behavior in the United States ("US General Social Survey", 2021). Since 1972, the GSS has been conducted by the NORC at the University of Chicago, and is currently funded by the National Science Foundation (NSF) This survey was conducted annually until 1990, where it shifted towards a bi-annual schedule. Its aim is to maintain a consistent set of questions that aggregates American sentiments through similar sampling and questioning approaches. Depending on the year, political context, and contemporary academic practices, additional questions may be added or altered. However, there are still a core set of questions that are maintained and given every year. These core survey questions are mostly identity related (age, income, gender, etc.), but a few are also relevant to general opinions and well being. Additionally, the survey consists of repeating and topical modules, with each participant receiving a subset of both. For the scope of this study, we are going to look at survey responses produced from the 2021 survey.
 
 The sample for the 2021 survey consisted of adults aged 18 and older living in privately owned homes in the US. To select respondents, the "last birthday method" was used, which involves selecting the adult with the most recent birthday to when the mail was sent out. Prior to the pandemic, the selection process was more rigorous, with an interviewer physically present to assist respondents and make the selection after all adults had filled in an introductory form. For the 2021 survey, materials were mailed to participants with a web link invitation instead. The response rate was 17.4%, with 88.3% of respondents completing the survey via the web and 11.7% completing it via phone. A total of 4,032 surveys were completed between December 1, 2020, and May 3, 2021.
 
-## 2.3 Survey Biases and Ethics
+## 2.2 Survey Biases and Ethics
 The lack of an interviewer implied the possibility of non-response, as participants are less socially pressured to fill out responses they may or may not feel inclined to report. To address this, an introductory form was administered to all participating adults which somewhat ensured that those taking the survey are dedicated enough to offer adequate responses.This was a trade off in the sampling approach that must be noted compared to previous years. Therefore, weights were carefully placed to account for factors such as population totals, density of surveyed addresses nearby, and non-response. The weighting system must account for new data and be similar to previous years to avoid skewing the results. However, despite all of these measures and countermeasures, the greatest challenge against the GSS (in all years) is the threat of survey bias, as all the data collected for all surveys are from participants willing to fill out a 90 minute survey. This could mean that the only people represented in the GSS survey are those with the free time and willingness to offer survey responses to NORC, potentially misrepresenting the overall population.
 
 Furthermore, the GSS 2021 survey has made changes to the survey response options due to the shift from in-person interviews to web and phone-based interviews. The survey originally contained "volunteered responses" that were not displayed to respondents but used by interviewers. However, interviewers are unable to add volunteer responses in this year's survey because of the lack of interaction on web and phone-based interviews. The GSS adopted a new structure for volunteered responses on the web mode by creating two different versions of forms, one with and one without volunteered responses as an option. Any changes in public opinion seen in the 2021 GSS data could be due to actual changes in public opinion or the newly adopted methodology and should be closely monitored and considered in analysis.
@@ -61,9 +66,9 @@ Similarly, we wish to highlight this limitation in the GSS, as one of our most i
 
 Another important vulnerability to identify is the outdatedness of certain variables. Specifically, variables such as income(respondent family income) and rincome (respondent income) are not scaled for inflation. The 12 income ranges used to represent respondents do not exceed 25 000. However, the GSS does acknowledge this, and has implemented different income ranges to accommodate for inflation. Specifically, we will be using income16 (respondent family income in 2016 and beyond) to represent the ranges of income of our respondents. Furthermore, we will be condensing these ranges during data cleaning to better visually interpret the data.
 
-## 2.4 Data Collection
+## 2.3 Data Collection
 
-In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R \[\@rcoreteam2022\]. The tidyverse package \[\@wickham2019\] was used to load in the dplyr package to filter variables \[\@wickham2023\], and ggplot2 to visualize the data in graphs \[\@wickham2016\]. Furthermore, we also employed packages gtsummary and flextable to create table visualizations and summaries of our findings 
+In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R \[\@rcoreteam2022\]. The tidyverse package \[\@wickham2019\] was used to load in the dplyr package to filter variables \[\@wickham2023\], and ggplot2 to visualize the data in graphs \[\@wickham2016\]. Furthermore, we also employed packages gtsummary \[\@gtsummary\] and \[\@flextable\]  to create table visualizations and summaries of our findings 
 
 The data extraction process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file, in our Github repository.
 
@@ -88,7 +93,7 @@ Before we chose any of the other variables, we decided to first pick out INCOME1
 We also currently have variable "- LIFE: "Subjective opinion of respondent's view on life as dull, routine, or exciting"  included in the data extract. We ended up not working with this variable as it only included samples from two out of the 3 ballots employed in 2021. 
 
 
-## 2.5 Data Cleaning
+## 2.4 Data Cleaning
 
 In order to clean the data, we started by selecting all of the applicable columns to make two separate data frames. The first one consisted of SATFIN, which is financial satisfaction, and the INCOME16 column which is a family's yearly income. While trying to visualize the data, we decided to make more general income ranges, instead of the twenty six that were provided in the original INCOME16 column. We settled on five income ranges (which we will later discuss in discussions). We did so by creating an ifelse statement that would add an additional column "new_income_range" with our own set income ranges depending on the INCOME16 value. We then removed all invalid entries that consisted of either "incomplete", "did not answer", or "did not complete online" values. Similarly, we made another master_clean dataset, in which we selected the columns HAPPY, HAMPAR, HEALTH, FINALTER, SAFTIN, INCOME16, and GROUPED_INC. We then followed the same methodology of adding our own column for our custom income range, and removing all invalid entries from all of the invalid rows.
 
