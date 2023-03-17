@@ -35,7 +35,9 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 # 1 Introduction {sec-introduction}
 
 
+
 # 2 Data {sec-data}
+
 
 
 ## 2.1 Tools Used {sec-toolsused}
@@ -52,15 +54,29 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 
 ## 2.4 Data Collection {sec-datacollection}
 
+This process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file in our Github repository. 
 
+In order to visualize the results of the GSS, the data was imported and analyzed using R [@rcoreteam2022]. The tidyverse package [@wickham2019] was used to load in the dplyr package to filter variables [@wickham2023], and ggplot2 to visualize the data in graphs [@wickham2016]. 
+
+The data that was chosen to be analyzed from the GSS were variables that involved subjective opinions about the respondent’s well-being in tandem with socioeconomic variables that act as potential contributors to their state. These specific variables are:
+
+HAPPY: Subjective opinion of the respondent’s happiness
+HAPMAR: Subjective opinion of the respondents’ current happiness in their marriage (if they are married)
+HEALTH: Subjective opinion of the respondent’s current health status
+SATFIN: Financial satisfaction of the respondent
+INCOME16: Total family income of the respondent, which includes: total income includes interest or dividends, rent, social security, other pensions, alimony or child support, unemployment compensation, public aid (welfare), armed forces or veteran's allotment. 
+FINALTER: Subjective opinion of the respondent’s financial situation in the past few years since 2021.
+
+Before we chose any of the other variables, we decided to first pick out INCOME16 and SATFIN. The reason for this is because we want to be able to gauge what range of income respondents would identify as a range where they would be financially satisfied. The reason for this is to quantify financial satisfaction on the basis of income, as this allows us to translate the sentiment of satisfaction into a tangible number. Similarly, happiness in a marriage context with HAPMAR was also chosen to be analyzed as social relationships play a large role in a person’s sense of belonging, and so we wanted to assess how living with a partner can affect their well-being in a measurable way. HEALTH is used to gauge how people feel about their general health condition, and can predict to a certain extent their well-being. These variables will be further explored in our data analysis (or can be demonstrated right now in a graph). Overall, our attention was turned to three specific factors: finances, relationships, and health. These variables were chosen to be analyzed as they represent core dimensions that are interconnected with well-being and how humans experience and feel about life [@rath2010]. Discussing these factors as they affect your well-being turns them into abstract concepts for people to visualize and describe to others, and so a subjective viewpoint was taken from respondents to gain an idea of how they affect them in a general context. 
 
 ## 2.5 Data Cleaning {sec-datacleaning}
 
+In order to clean the data, we started by selecting all of the applicable columns to make two separate data frames. The first one consisted of SATFIN, which is financial satisfaction, and the INCOME16 column which is a family’s yearly income. While trying to visualize the data, we decided to make more general income ranges, instead of the twenty six that were provided in the original INCOME16 column. We settled on five income ranges. We did so, by creating an ifelse statement that would add an additional column “new_income_range” with our own set income ranges depending on the INCOME16 value. We then removed all invalid entries that consisted of either “incomplete”, “did not answer”, or “did not complete online” values. Similarly, we made another master_clean dataset, in which we selected the columns HAPPY, HAMPAR, HEALTH, FINALTER, SAFTIN, INCOME16, and GROUPED_INC. We then followed the same methodology of adding our own column for our custom income range, and removing all invalid entries from all of the invalid rows.
 
 
 # 3 Results {sec-results}
 
-
+In this section we cross-analyze each of the variables as outlined in {sec-datacollection} with themselves. This involves comparing the answers from two questions on the survey in order to draw potential trends between the respondents' feelings about the specific topic and their opinion of their well-being in relation to it.
 
 \newpage
 
