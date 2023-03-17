@@ -4,7 +4,7 @@ author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
 thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
 date: "`r Sys.time()`"
 date-format: "D MMMM YYYY"
-abstract: "DON'T FORGET THIS"
+abstract: "This paper discusses data taken from the 2021 US General Social Survey to analyze the relationship between finances and overall individual well being. Specifically, this paper looks to analyze and determine the relationships between financial well being and factors such as happiness, health, and marriage quality. The analysis provided a positive relationship between the two, however many confounding limitations still exist in regards to the possible interpretations of the data. Another survey is included at the end designed with the intention to better understand these variables with less limitation."
 format: pdf
 bibliography: references.bib
 ---
@@ -32,35 +32,38 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 
 
 
-# 1 Introduction
+# 1 Introduction {sec-introduction}
 
 
-# 2 Data
+# 2 Data {sec-data}
 
 
-## 2.1 Tools Used
-
-
-
-## 2.2 Survey Methodology
+## 2.1 Tools Used {sec-toolsused}
 
 
 
-## 2.3 Survey Biases and Ethics
+## 2.2 Survey Methodology {sec-surveymethods}
 
 
 
-## 2.4 Data Collection
+## 2.3 Survey Biases and Ethics {sec-surveyethics}
 
 
 
-## 2.5 Data Cleaning
+## 2.4 Data Collection {sec-datacollection}
 
 
 
-# 3 Results
+## 2.5 Data Cleaning {sec-datacleaning}
+
+
+
+# 3 Results {sec-results}
+
+
 
 \newpage
+
 ```{r}
 #| label: table-satfinincome
 #| tbl-cap: Table Visualization of financial satisfaction of respondents with respect to their relative income. There is a larger proportion of respondents that claim that they are not satisfied with their finances at lower income ranges. As the income range increases, more respondents proportionally express that they are either more of less satisfied, or are pretty well satisfied with their financial situation.
@@ -72,6 +75,9 @@ table_satfinincome <- mastercleaned %>%
 table_satfinincome %>%
 
 ```
+
+
+
 
 ```{r}
 #| label: fig-satfincome
@@ -92,7 +98,11 @@ ggplot(
 
 ```
 
+
+
 \newpage
+
+
 ```{r}
 #| label: table-happyandsatfin
 #| fig-cap: something
@@ -110,7 +120,11 @@ happycleaned %>%
   tbl_cross(row = happy, col = new_income_range, label = list(new_income_range ~ "Income Ranges", happy ~ "Happiness"), percent = "column")
 ```
 
+
+
 \newpage
+
+
 
 ```{r}
 #| label: fig-satfinhappy
@@ -132,7 +146,12 @@ ggplot(
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 
 ```
+
+
+
 \newpage
+
+
 
 ```{r}
 #| label: fig-happyincome
@@ -153,7 +172,13 @@ ggplot(
        fill = "Happiness Response")
 
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: table-hapmarsatfin
 #| fig-cap: something2
@@ -163,6 +188,8 @@ hapmarcleaned %>%
   tbl_cross(row = hapmar, col = satfin, label = list(satfin ~ "Financial Satisfactions", hapmar ~ "Happiness of Marriage"), percent = "column")
 ```
 
+
+
 ```{r}
 #| label: table-hapmarincome
 #| fig-cap: something2
@@ -171,7 +198,13 @@ hapmarcleaned %>%
 hapmarcleaned %>% 
   tbl_cross(row = hapmar, col = new_income_range, label = list(new_income_range ~ "Income Ranges", hapmar ~ "Happiness of Marriage"), percent = "column")
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: fig-hapmarsatfin
 #| fig-cap: something2
@@ -190,7 +223,13 @@ ggplot(
        fill = "Happiness of Marriage")+
   scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: fig-hapmarincome
 #| fig-cap: ???
@@ -209,7 +248,13 @@ ggplot(
        y = "Frequency",
        fill = "Happiness of Marriage")
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: table-healthsatfin
 #| fig-cap: something2
@@ -219,6 +264,9 @@ healthcleaned %>%
   tbl_cross(row = health, col = satfin, label = list(satfin ~ "Financial Satisfactions", health ~ "Quality of Health"), percent = "column")
 ```
 
+
+
+
 ```{r}
 #| label: table-healthincome
 #| fig-cap: something2
@@ -227,7 +275,13 @@ healthcleaned %>%
 healthcleaned %>% 
   tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column")
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: fig-healthsatfin
 #| fig-cap: something2
@@ -246,7 +300,13 @@ ggplot(
        fill = "Health")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: fig-healthincome
 #| fig-cap: something2
@@ -264,7 +324,13 @@ ggplot(
        y = "Frequency",
        fill = "Health")
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: table-finaltsatfin
 #| fig-cap: something2
@@ -274,6 +340,9 @@ finaltercleaned %>%
   tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
 ```
 
+
+
+
 ```{r}
 #| label: table-finaltincome
 #| fig-cap: something2
@@ -282,7 +351,14 @@ finaltercleaned %>%
 finaltercleaned %>% 
   tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
 ```
+
+
+
 \newpage
+
+
+
+
 ```{r}
 #| label: fig-finaltsatfin
 #| fig-cap: something2
@@ -301,7 +377,13 @@ ggplot(
        fill = "Changes in Wealth")+
     scale_x_discrete(limit = c("Not satisfied at all", "More or less satisfied", "Pretty well satisfied"))
 ```
+
+
+
 \newpage
+
+
+
 ```{r}
 #| label: fig-finaltincome
 #| fig-cap: something2
@@ -321,14 +403,15 @@ ggplot(
 ```
 
 
-# 4 Discussion
+
+# 4 Discussion {sec-discussion}
 
 
 
-## 4.1 Limitations
+## 4.1 Limitations {sec-limitations}
 
 
 
-# 5 Appendix
+# 5 Appendix {sec-appendix}
 
 
