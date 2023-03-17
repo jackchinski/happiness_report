@@ -1,10 +1,10 @@
 ---
-title: "Well-being of Individuals from the United States Global Social Survey are Affected by Finances, Relationships, and Health"
+title: "Finances and Individual Well Being"
 author: "Justin Abando, Jin Di Liu, Marcin Jaczynski"
 thanks: "Code and data are available at: https://github.com/jackchinski/happiness_report"
 date: "`r Sys.time()`"
 date-format: "D MMMM YYYY"
-abstract: "This paper discusses data taken from the 2021 US General Social Survey to analyze the relationship between financial well being and overall individual well being. "
+abstract: "This paper discusses data taken from the 2021 US General Social Survey to analyze the relationship between finances and overall individual well being. Specifically, this paper looks to analyze and determine the relationships between financial well being and factors such as happiness, health, and marriage quality. The analysis provided a positive relationship between the two, however many confounding limitations still exist in regards to the possible interpretations of the data. Another survey is included at the end designed with the intention to better understand these variables with less limitation."
 format: pdf
 bibliography: references.bib
 ---
@@ -35,8 +35,8 @@ healthcleaned <- read_csv("../../outputs/data/health_cleaned.csv")
 The advent of 2023 is one marked with economic hardship and depression. After the pandemic, markets scrambled as inflation rose to an all time high and signs of economic downturn began creeping through in the form of layoffs and reduced spending.
 Because of this, we wanted to investigate the effects that finances (economic statuses and hardships) have on well being. For our investigation, we wished to interrogate elements that we believe are representative of well being in relation to financial wellbeing.  Specifically, we chose to investigate factors such as happiness, health, happiness of marriage, and life excitement. We were able to identify interesting correlations between quality of health, happiness, and happiness of marriage with financial satisfaction and income.
 
-To first get a better grasp of this investigation, we conducted a small literature review on the relationships between finances and well being in the United States. A common well known relationship between well being and finances is the positive correlation between Life Satisfaction and Economic well being \[\@helliwell2012world\]. Furthermore, there are other economic theories that also attempt to interrogate the relationship between happiness and economic well being such as the Easterlin Paradox \[\@easterlin1974does\].
-In this regard, the positive correlation between finances and happiness is well understood. However, looking deeper into the literature, we can also identify how the deprivation of economic well being can also negatively impact an individual’s quality of life. Specifically, research shows that economic hardship can impact marital quality and cause instability. This is due to an increase in occupational and financial stress that generate frustration, stress, anger and depression. \[\@conger1990linking\] Furthermore, economic hardships can also inflict long-term consequences on children’s psychological well being in adulthood. \[\@sobolewski2005economic\]. Finally, economic hardships play a major role in increasing depression levels, as depression can emerge as a byproduct of low income, education, being young, and having young children. \[\@ross1985hardship\]
+To first get a better grasp of this investigation, we conducted a small literature review on the relationships between finances and well being in the United States. A common well known relationship between well being and finances is the positive correlation between Life Satisfaction and Economic well being [@helliwell2012world]. Furthermore, there are other economic theories that also attempt to interrogate the relationship between happiness and economic well being such as the Easterlin Paradox [@easterlin1974does].
+In this regard, the positive correlation between finances and happiness is well understood. However, looking deeper into the literature, we can also identify how the deprivation of economic well being can also negatively impact an individual’s quality of life. Specifically, research shows that economic hardship can impact marital quality and cause instability. This is due to an increase in occupational and financial stress that generate frustration, stress, anger and depression. [@conger1990linking] Furthermore, economic hardships can also inflict long-term consequences on children psychological well being in adulthood. [@sobolewski2005economic]. Finally, economic hardships play a major role in increasing depression levels, as depression can emerge as a byproduct of low income, education, being young, and having young children. [@ross1985hardship]
 	Based on our brief literature review and the current economic climate of 2023, we were inspired to engage with the GSS 2021 survey data to answer questions about the impact of financial satisfaction with overall well being.
 
 # 2 Data
@@ -53,13 +53,10 @@ The lack of an interviewer implied the possibility of non-response, as participa
 
 Furthermore, the GSS 2021 survey has made changes to the survey response options due to the shift from in-person interviews to web and phone-based interviews. The survey originally contained "volunteered responses" that were not displayed to respondents but used by interviewers. However, interviewers are unable to add volunteer responses in this year's survey because of the lack of interaction on web and phone-based interviews. The GSS adopted a new structure for volunteered responses on the web mode by creating two different versions of forms, one with and one without volunteered responses as an option. Any changes in public opinion seen in the 2021 GSS data could be due to actual changes in public opinion or the newly adopted methodology and should be closely monitored and considered in analysis.
 
-###Nonresponse Bias
 Changes to "Don't Know" and "No Answer" responses have also been made in the 2021 GSS survey. Traditionally, these options were not shown to respondents, and it was only recorded if the respondent did not wish to answer. On the web mode, however, responders can only skip the question, and the option of "No Answer" was removed. The option of "Don't Know" was also removed from attitudinal questions and only displayed in light-gray as an option for factual questions. Implementing these changes exposes the survey to more "No Answer" and "Don't Know" responses, which could lead to a loss of information. However, the GSS codebook has stated that there was no significant increase in respondents choosing these options, but they encourage further investigation as this finding is still preliminary.
 
-##Survey bias
 The data that was represented in this analysis has many considerations to take into account. First, it must be considered that these results are highly generalized, as one respondent in the GSS survey corresponds to 90,000 people. This is the result of how the data was collected, and as such the data visualizations are only to be seen in a general context. In addition, we also have to consider that opinions of what people are thinking are not substantial enough to confidently argue in absolutes in regards to the correlation between well-being and the variables that were analyzed. This also applies to the fact that respondents can still lie on the survey as there is no way to verify if the respondents were answering truthfully over a survey. It must also be considered that volunteer bias is present with this survey, as those respondents that have time and access to contribute to the survey would be more likely to take part. As a result, this data may misrepresent the population as those that have the free time to offer these opinions may be more well off. While it's great to include anyone in the survey, the assumption can be made that more respondents would likely consist of individuals that are well off.
 
-##Sentiment Conceptualization
 Furthermore, the nature of sentiment-based questions in the GSS can be difficult to conceptualize. In GSS Methodological Report No. 127, Tom W. Smith investigates the nature of vague questions such as SATJOB (Job Satisfaction) and how it is a subjective concept that varies in definition depending on the respondent. Specifically, he quotes another paper that writes "there probably are several types of feelings that people have which can be satisfaction or which influence their feelings of satisfaction about their job."(Wanous and Lawler, 1972) In other words, depending on the categories, feelings, and values respondents assign to their jobs, the satisfaction reported can be wildly different from one.
 
 Similarly, we wish to highlight this limitation in the GSS, as one of our most important variables SATFIN is also a subjective sentiment-based question that we will use to gauge the financial comfort of the respondents. To address this limitation, however, we have also decided to include income into our analysis in order to somewhat quantify the varying degrees of financial satisfaction before we set out to measure its impact on various aspects of well being.
@@ -68,7 +65,7 @@ Another important vulnerability to identify is the outdatedness of certain varia
 
 ## 2.3 Data Collection
 
-In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R \[\@rcoreteam2022\]. The tidyverse package \[\@wickham2019\] was used to load in the dplyr package to filter variables \[\@wickham2023\], and ggplot2 to visualize the data in graphs \[\@wickham2016\]. Furthermore, we also employed packages gtsummary \[\@gtsummary\] and \[\@flextable\]  to create table visualizations and summaries of our findings 
+In order to visualize the results of the GSS, the data was extracted from the GSS Data Explorer and was imported and analyzed using R [@rcoreteam2022]. The tidyverse package [@wickham2019] was used to load in the dplyr package to filter variables [@wickham2023], and ggplot2 to visualize the data in graphs [@wickham2016]. Furthermore, we also employed packages gtsummary [@gtsummary] and [@flextable]  to create table visualizations and summaries of our findings 
 
 The data extraction process requires access to an internet browser, a file compression software such as 7zip, and Microsoft Excel. In order to acquire the GSS 2021 data that we have extracted through legal means, please follow the precise steps outlined in our README.md file, in our Github repository.
 
@@ -137,7 +134,7 @@ ggplot(
 
 ```{r}
 #| label: table-happyandsatfin
-#| fig-cap: something
+#| tbl-cap: Financial Satisfaction vs. Happiness
 #| echo: false
 #| message: false
 table_happinesssatfin <- happycleaned %>% 
@@ -148,7 +145,7 @@ table_happinesssatfin %>% autofit() %>% fit_to_width(6.5)
 
 ```{r}
 #| label: table-happyandincomes
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Happiness
 #| echo: false
 #| message: false
 table_happyandincomes <- happycleaned %>% 
@@ -205,7 +202,7 @@ ggplot(
 \newpage
 
 ```{r}
-#| label: table-satfinincome
+#| label: table-hapmarsatfin
 #| tbl-cap: Financial Satisfaction vs. Happiness of Marriage
 #| echo: false
 #| message: false
@@ -218,7 +215,7 @@ table_hapmarsatfin %>% autofit() %>% fit_to_width(6.5)
 
 ```{r}
 #| label: table-hapmarincome
-#| table-cap: Income Range vs. Happiness of Marriage
+#| tbl-cap: Income Range vs. Happiness of Marriage
 #| echo: false
 #| message: false
 table_hapmarincome <- hapmarcleaned %>% 
@@ -273,7 +270,7 @@ ggplot(
 
 ```{r}
 #| label: table-healthsatfin
-#| fig-cap: something2
+#| tbl-cap: Financial Satisfaction vs. Health
 #| echo: false
 #| message: false
 table_healthsatfin <- healthcleaned %>% 
@@ -284,13 +281,13 @@ table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
 
 ```{r}
 #| label: table-healthincome
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Health
 #| echo: false
 #| message: false
-healthcleaned %>% 
+table_healthcleaned <- healthcleaned %>% 
   tbl_cross(row = health, col = new_income_range, label = list(new_income_range ~ "Income Ranges", health ~ "Quality of Health"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Income Ranges vs. Health")
 
-table_healthsatfin %>% autofit() %>% fit_to_width(6.5)
+table_healthcleaned %>% autofit() %>% fit_to_width(6.5)
 ```
 
 \newpage
@@ -338,20 +335,24 @@ ggplot(
 
 ```{r}
 #| label: table-finaltsatfin
-#| fig-cap: something2
+#| tbl-cap: Financial Satisfaction vs. Changes in Finances
 #| echo: false
 #| message: false
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = satfin, label = list(satfin ~ "Financial Satisfaction", finalter ~ "Changes in Wealth"), percent = "column")
+table_altsat<- finaltercleaned %>% 
+  tbl_cross(row = finalter, col = satfin, label = list(satfin ~ "Financial Satisfaction", finalter ~ "Changes in Wealth"), percent = "column") %>% as_flex_table() %>% set_caption(caption = "Financial Satisfaction vs. Changes in Finances")
+
+table_altsat %>% autofit() %>% fit_to_width(6.5)
 ```
 
 ```{r}
 #| label: table-finaltincome
-#| fig-cap: something2
+#| tbl-cap: Income Ranges vs. Changes in Finances
 #| echo: false
 #| message: false
-finaltercleaned %>% 
-  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")
+table_altinc<- finaltercleaned %>% 
+  tbl_cross(row = finalter, col = new_income_range, label = list(new_income_range ~ "Income Ranges", finalter ~ "Changes in Wealth"), percent = "column")%>% as_flex_table() %>% set_caption(caption = "Income Ranges vs. Changes in Finances")
+
+table_altinc %>% autofit() %>% fit_to_width(6.5)
 ```
 
 \newpage
